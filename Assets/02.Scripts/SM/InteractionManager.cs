@@ -29,7 +29,7 @@ public class InteractionManager : MonoBehaviour
         camera = Camera.main;
     }
 
-    private void Updaate()
+    private void Update()
     {
         if (Time.time - lastCheckTime > checkRate)
         {
