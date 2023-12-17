@@ -30,8 +30,11 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool canLook = true;
+    public bool isJump = false;
 
     private Rigidbody _rigidbody;
+
+    private Camera _camera;
 
     private void Awake()
     {
@@ -40,20 +43,25 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if(canLook)
+        {
+            Move();
+        }
     }
 
     private void LateUpdate()
     {
-        if(canLook)
+        if(canLook || _camera.gameObject.activeSelf)
         {
             CameraLook();
         }
+
     }
 
     /// <summary>
@@ -74,11 +82,28 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void CameraLook()
     {
-        _camCurXRot += mouseDelta.y * lookSensitivity;
-        _camCurXRot = Mathf.Clamp( _camCurXRot, minXLook, maxXLook );
-        cameraContainer.localEulerAngles = new Vector3(-_camCurXRot, 0, 0);
+        if (_camera.gameObject.activeSelf == false)
+        {
+            canLook = false;
+        }
+        else
+        {
+            canLook = true;
+        }
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        if (canLook)
+        {
+            _camCurXRot += mouseDelta.y * lookSensitivity;
+            _camCurXRot = Mathf.Clamp(_camCurXRot, minXLook, maxXLook);
+            cameraContainer.localEulerAngles = new Vector3(-_camCurXRot, 0, 0);
+
+            transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        }
+       else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
     /// <summary>
@@ -112,13 +137,11 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if( context.phase == InputActionPhase.Started)
+        if(context.phase == InputActionPhase.Started)
         {
             if(IsGround())
             {
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
-                Debug.Log("«Ǫ");
-               
             }
         }
     }
@@ -127,7 +150,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Ground üũ
     /// </summary>
-    private bool IsGround()
+    public bool IsGround()
     {
         Ray[] rays = new Ray[4]
         {
@@ -142,10 +165,13 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(rays[i], 0.1f, grounLayerMask)) 
             {
+                Debug.Log("ray?");
+                isJump = true;
                 return true;
             }
         }
 
+       
         return false;
 
     }
