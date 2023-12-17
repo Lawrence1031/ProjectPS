@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class DoorButton : MonoBehaviour
 {
-    public GameObject button;
-    public GameObject door;
+    //public GameObject door;
+    //public GameObject button;
+    //public DoorController doorContoller;
 
-    /// <summary>
-    /// 문을 열 수 있는 버튼의 능력을 추가하려고 합니다.
-    /// </summary>
-    public void PushDoorButton()
-    {
-        door.SetActive(false);        
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        doorContoller.ToggleDoor();
+    //    }
+    //}
+
+    ///// <summary>
+    ///// 문을 열 수 있는 버튼의 능력을 추가하려고 합니다.
+    ///// </summary>
+    //public void PushDoorButton()
+    //{
+    //    door.SetActive(false);        
+    //}
 }

@@ -19,7 +19,7 @@ public class DoorController : MonoBehaviour
     /// <summary>
     /// 키가 있다면 문을 여는 기믹이 시작되게 해야합니다.
     /// </summary>
-    private void ToggleDoor()
+    public void ToggleDoor()
     {
         //if (hasKey)
         //{
@@ -34,12 +34,14 @@ public class DoorController : MonoBehaviour
 
         if (isOpen)
         {
+            Debug.Log("Door is Opened");
             transform.localScale = new Vector3(3, 3, 1);
             transform.position = new Vector3(0, 3f, 50);
             //Door.SetActive(false);
         }
         else
         {
+            Debug.Log("Door is Closed");
             transform.localScale = new Vector3(10, 8, 1);
             transform.position = new Vector3(0, 3f, 50);
             //Door.SetActive(true);
