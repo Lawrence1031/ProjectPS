@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 782816951}
   - component: {fileID: 782816950}
   - component: {fileID: 782816949}
+  - component: {fileID: 782816953}
   m_Layer: 9
   m_Name: Door
   m_TagString: Untagged
@@ -965,8 +966,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782816947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 53.94}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 1.12, z: 50.11}
+  m_LocalScale: {x: 10, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1225627656}
@@ -1018,7 +1019,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &782816951
 MeshRenderer:
@@ -1070,6 +1071,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782816947}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &782816953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782816947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9eb81e2c039d04ba32184f2c97e0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door: {fileID: 782816947}
 --- !u!1 &928121388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1853576113048838072, guid: 11ec26ebe5770344094d00ab255ca70e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0.117
       objectReference: {fileID: 0}
     - target: {fileID: 1853576113048838072, guid: 11ec26ebe5770344094d00ab255ca70e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2206,7 +2220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7066301125804522855, guid: 11ec26ebe5770344094d00ab255ca70e, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
