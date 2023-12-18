@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(canLook || _camera.gameObject.activeSelf)
+        if(canLook)
         {
             CameraLook();
         }
