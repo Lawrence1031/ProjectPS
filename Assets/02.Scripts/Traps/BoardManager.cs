@@ -5,68 +5,61 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     public GameObject boardPrefab; // 사용할 발판 프리팹
-    public int boardSize = 4;      // 발판 배열의 크기 (여기서는 4x4)
+    public GameObject trapPrefab; // 사용할 발판 프리팹
+    public int boardSize = 6;      // 발판 배열의 크기 (여기서는 6x6)
     public float spacing = 3.0f;   // 각 발판 간의 간격
+
+    private List<GameObject> allBoards = new List<GameObject>(); // 모든 발판을 저장할 리스트
+
+    public bool IsInitialized { get; private set; } // 초기화 상태를 나타내는 프로퍼티
 
     void Start()
     {
-        SpawnBoards(); // 시작 시 발판 생성
+        SpawnBoards(); // 게임 시작 시 발판 생성
+        IsInitialized = true; // 모든 발판 생성 후 초기화 상태를 true로 설정
     }
 
+    // 발판을 생성하는 메소드
     void SpawnBoards()
     {
-        List<GameObject> allBoards = new List<GameObject>(); // 모든 발판을 저장할 리스트
-
-        // 현재 오브젝트의 위치를 발판 생성의 기준점으로 사용
+        // 이 객체의 위치를 발판 생성의 기준점으로 사용
         Vector3 basePosition = transform.position;
 
-        // 이중 반복문을 사용하여 그리드 형태로 발판 생성
+        // boardSize에 지정된 크기만큼 이중 반복문을 사용하여 그리드 형태로 발판 생성
         for (int x = 0; x < boardSize; x++)
         {
             for (int z = 0; z < boardSize; z++)
             {
-                // 발판의 위치 계산
+                // 각 발판의 월드 위치 계산
                 Vector3 position = basePosition + new Vector3(x * spacing, 0, z * spacing);
-                // 발판 프리팹을 인스턴스화하여 생성
-                GameObject board = Instantiate(boardPrefab, position, Quaternion.identity, transform);
-                allBoards.Add(board); // 생성된 발판을 리스트에 추가
-            }
-        }
 
-        // 생성된 발판 중 일부를 함정으로 설정
-        SetRandomTraps(allBoards);
-    }
+                // 해당 위치가 함정 발판인지 일반 발판인지 결정
+                // IsTrapPattern 메소드는 x, z 좌표에 따라 true(함정) 또는 false(일반) 반환
+                GameObject prefabToUse = IsTrapPattern(x, z) ? trapPrefab : boardPrefab;
 
-    void SetRandomTraps(List<GameObject> boards)
-    {
-        int totalBoards = boardSize * boardSize;       // 총 발판의 수
-        int trapsToSet = totalBoards / 4;              // 전체 발판 중 25%를 함정으로 설정
+                // 계산된 위치에 발판 프리팹 인스턴스화하여 생성
+                GameObject board = Instantiate(prefabToUse, position, Quaternion.identity, transform);
 
-        Shuffle(boards); // 발판 리스트를 무작위로 섞음
-
-        // 지정된 수만큼 함정 발판 설정
-        for (int i = 0; i < trapsToSet; i++)
-        {
-            TrapDamage trapDamage = boards[i].GetComponent<TrapDamage>();
-            if (trapDamage != null)
-            {
-                trapDamage.isTrap = true; // 해당 발판을 함정으로 설정
+                // 생성된 발판을 allBoards 리스트에 추가
+                allBoards.Add(board);
             }
         }
     }
 
-    // 리스트를 무작위로 섞는 메소드
-    void Shuffle(List<GameObject> list)
+    // 지정된 패턴에 따라 함정 발판인지 판별
+    bool IsTrapPattern(int x, int z)
     {
-        for (int i = 0; i < list.Count; i++)
-        {
-            GameObject temp = list[i];
-            int randomIndex = Random.Range(i, list.Count); // 무작위 인덱스 선택
-            list[i] = list[randomIndex];                   // 요소들을 교환하여 섞음
-            list[randomIndex] = temp;
-        }
+        // 주어진 패턴에 따라 함정 발판 위치 설정
+        return (z == 1 && x >= 1 && x <= 4) || 
+          (z == 2 && x == 2) || 
+          (z == 3 && (x == 0 || x >= 2)) || 
+          (z == 4 && (x == 0 || x == 5)) || 
+          (z == 5 && x <= 3); 
+    }
+
+    // 모든 발판을 반환하는 메소드
+    public List<GameObject> GetAllBoards()
+    {
+        return allBoards;
     }
 }
-
-
-

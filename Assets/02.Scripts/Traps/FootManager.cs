@@ -15,21 +15,23 @@ public class FootManager : MonoBehaviour
 
     void SpawnTraps()
     {
-        Vector2 floorSize = floorScale * 10f;
+        Vector2 floorSize = floorScale * 10f; // 바닥 오브젝트의 실제 크기 계산
+        Vector3 basePosition = transform.position; // FootManager 오브젝트의 현재 위치를 기준점으로 사용
 
         for (int i = 0; i < trapCount; i++)
         {
-            // 바닥 오브젝트의 크기를 기준으로 랜덤 위치를 생성
-            Vector3 randomPosition = new Vector3(
+            // FootManager 기준점을 포함하여 랜덤 위치를 생성
+            Vector3 randomPosition = basePosition + new Vector3(
                 Random.Range(-floorSize.x / 2, floorSize.x / 2), // X축 랜덤 위치
-                0.5f, // Y축 위치 (바닥에 근접하도록 설정)
+                -12.7f, // Y축 위치 (지정된 높이에 설정)
                 Random.Range(-floorSize.y / 2, floorSize.y / 2)  // Z축 랜덤 위치
             );
 
             // 함정 프리팹을 인스턴스화하여 랜덤 위치에 배치
-            Instantiate(trapPrefab, randomPosition, Quaternion.identity, transform);
+            Instantiate(trapPrefab, randomPosition, Quaternion.identity);
         }
     }
 }
+
 
 
