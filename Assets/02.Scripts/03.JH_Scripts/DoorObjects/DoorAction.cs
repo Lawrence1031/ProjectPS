@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class DoorAction : MonoBehaviour
 {
     public GameObject Door;
-    private Position doorPosition;
     private bool isOpen = true;
     private Vector3 initialPosition;
     private Vector3 targetPosition;
@@ -17,16 +16,11 @@ public class DoorAction : MonoBehaviour
         targetPosition = initialPosition + new Vector3(0, 2.5f, 0);
     }
 
-    protected void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Encounter");
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Pressed E Key");
-                ToggleDoor();
-            }
+            ToggleDoor();
         }
     }
 
@@ -52,13 +46,11 @@ public class DoorAction : MonoBehaviour
         {
             Debug.Log("Door is Opened");
             transform.position = targetPosition;
-            //Door.SetActive(false);
         }
         else
         {
             Debug.Log("Door is Closed");
             transform.position = initialPosition;
-            //Door.SetActive(true);
         }
 
         isOpen = !isOpen;
