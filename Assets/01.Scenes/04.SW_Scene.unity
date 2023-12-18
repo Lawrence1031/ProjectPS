@@ -1016,7 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130162512}
-  - component: {fileID: 2130162516}
+  - component: {fileID: 2130162518}
   - component: {fileID: 2130162517}
   - component: {fileID: 2130162513}
   - component: {fileID: 2130162515}
@@ -1061,19 +1061,7 @@ MonoBehaviour:
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1083,7 +1071,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2130162516}
+      - m_Target: {fileID: 2130162518}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMoveInput
         m_Mode: 0
@@ -1099,7 +1087,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2130162516}
+      - m_Target: {fileID: 2130162518}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnLookInput
         m_Mode: 0
@@ -1115,7 +1103,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2130162516}
+      - m_Target: {fileID: 2130162518}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJumpInput
         m_Mode: 0
@@ -1188,28 +1176,6 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &2130162516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130162511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a091824ad006364280711e38e08a405, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 4
-  jumpForce: 60
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  cameraContainer: {fileID: 1810320494}
-  minXLook: -85
-  maxXLook: 85
-  lookSensitivity: 0.2
-  canLook: 1
 --- !u!114 &2130162517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,3 +1196,26 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2130162518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130162511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb1255c82c4ae54e9e1af87fb38875d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  jumpForce: 60
+  grounLayerMask:
+    serializedVersion: 2
+    m_Bits: 447
+  cameraContainer: {fileID: 1810320494}
+  minXLook: -85
+  maxXLook: 85
+  lookSensitivity: 0.2
+  canLook: 1
+  isJump: 0
