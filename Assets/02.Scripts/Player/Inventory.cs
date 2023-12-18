@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
@@ -62,22 +62,6 @@ public class Inventory : MonoBehaviour
         ClearSeletecItemWindow();
     }
 
-    private void Update()
-    {
-        if (inventoryWindow.activeInHierarchy)
-        {
-            Time.timeScale = 0.0f;
-            controller.canLook = false;
-
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-            
-            controller.canLook = true;
-        }
-    }
-
     public void OnInventoryButton(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.phase == InputActionPhase.Started)
@@ -90,7 +74,6 @@ public class Inventory : MonoBehaviour
     {
         if (inventoryWindow.activeInHierarchy)
         {
-            controller.canLook = true;
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke();
             controller.ToggleCursor(false);
@@ -98,7 +81,6 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            controller.canLook = false;
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke();
             controller.ToggleCursor(true);
