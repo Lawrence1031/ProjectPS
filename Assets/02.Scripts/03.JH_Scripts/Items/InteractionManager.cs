@@ -52,8 +52,6 @@ public class InteractionManager : MonoBehaviour
                 }
                 else if (hit.collider.gameObject != curInteractGameObject)
                 {
-                    Debug.Log("camera" + _camera);
-
                     curInteractGameObject = hit.collider.gameObject;
                     curInteraction = hit.collider.GetComponent<IInteraction>();
                     SetPromptText();
@@ -109,7 +107,7 @@ public class InteractionManager : MonoBehaviour
 
     public void NonInteraction(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.phase == InputActionPhase.Started && _camera.gameObject.activeSelf == false)
+        if (callbackContext.phase == InputActionPhase.Started)
         {
             hintObject.NonInteract();
             curInteractGameObject = null;

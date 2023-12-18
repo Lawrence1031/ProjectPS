@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(canLook || _camera.gameObject.activeSelf)
+        if(canLook)
         {
             CameraLook();
         }
@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+       Gizmos.color = Color.red;
        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f), Vector3.down);
        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f), Vector3.down);
        Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
