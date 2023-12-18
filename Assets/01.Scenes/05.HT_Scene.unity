@@ -467,7 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369cf0f5e805d3a4d8ca291972249bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: f1dc58ec6e6c1ac4c8048a3250bc5626, type: 2}
 --- !u!54 &79307100
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3622,8 +3621,8 @@ GameObject:
   - component: {fileID: 1326601995}
   - component: {fileID: 1326601997}
   - component: {fileID: 1326601996}
-  - component: {fileID: 1326601994}
   - component: {fileID: 1326601998}
+  - component: {fileID: 1326601999}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3648,28 +3647,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1326601994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326601992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ca80d1cb8d90346ab7474136130841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  jumpForce: 0
-  goundLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  cameraContainer: {fileID: 1823840909}
-  minXLook: -85
-  maxXLook: 85
-  lookSensitivity: 0.2
-  canLook: 1
 --- !u!136 &1326601995
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3720,9 +3697,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1326601994}
+      - m_Target: {fileID: 1326601999}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMoneInput
+        m_MethodName: OnMoveInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3736,7 +3713,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1326601994}
+      - m_Target: {fileID: 1326601999}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJumpInput
         m_Mode: 0
@@ -3768,7 +3745,7 @@ MonoBehaviour:
     m_ActionName: Player/Flash[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1326601994}
+      - m_Target: {fileID: 1326601999}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnLookInput
         m_Mode: 0
@@ -3875,6 +3852,29 @@ MonoBehaviour:
   onCloseInventory:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1326601999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb1255c82c4ae54e9e1af87fb38875d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 20
+  jumpForce: 0
+  grounLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  cameraContainer: {fileID: 1823840909}
+  minXLook: -85
+  maxXLook: 85
+  lookSensitivity: 0.2
+  canLook: 1
+  isJump: 1
 --- !u!1 &1420370498
 GameObject:
   m_ObjectHideFlags: 0

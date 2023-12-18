@@ -26,11 +26,11 @@ public class Inventory : MonoBehaviour
     private int selectedItemIndex;
     public TextMeshProUGUI selectedItemName;
     public TextMeshProUGUI selectedItemDescription;
-    public TextMeshProUGUI selectedItemStatNames;
-    public TextMeshProUGUI selectedItemStatValues;
+    //public TextMeshProUGUI selectedItemStatNames;
+    //public TextMeshProUGUI selectedItemStatValues;
     public GameObject useButton;
-    public GameObject equipButton;
-    public GameObject unEquipButton;
+    //public GameObject equipButton;
+    //public GameObject unEquipButton;
     public GameObject dropButton;
 
     private int curEquipIndex;
@@ -94,16 +94,16 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
-        if (item.canStack)
-        {
-            ItemSlot slotToStackTo = GetItemStack(item);
-            if (slotToStackTo != null)
-            {
-                slotToStackTo.quantity++;
-                UpdateUI();
-                return;
-            }
-        }
+        //if (item.canStack)
+        //{
+        //    ItemSlot slotToStackTo = GetItemStack(item);
+        //    if (slotToStackTo != null)
+        //    {
+        //        slotToStackTo.quantity++;
+        //        UpdateUI();
+        //        return;
+        //    }
+        //}
 
         ItemSlot emptySlot = GetEmptySlot();
 
@@ -133,16 +133,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    ItemSlot GetItemStack(ItemData item)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item == item && slots[i].quantity < item.maxStackAmount)
-                return slots[i];
-        }
+    //ItemSlot GetItemStack(ItemData item)
+    //{
+    //    for (int i = 0; i < slots.Length; i++)
+    //    {
+    //        if (slots[i].item == item && slots[i].quantity < item.maxStackAmount)
+    //            return slots[i];
+    //    }
 
-        return null;
-    }
+    //    return null;
+    //}
 
     ItemSlot GetEmptySlot()
     {
@@ -166,8 +166,8 @@ public class Inventory : MonoBehaviour
         selectedItemName.text = selectedItem.item.displayName;
         selectedItemDescription.text = selectedItem.item.description;
 
-        selectedItemStatNames.text = string.Empty;
-        selectedItemStatValues.text = string.Empty;
+        //selectedItemStatNames.text = string.Empty;
+        //selectedItemStatValues.text = string.Empty;
 
     }
     private void ClearSeletecItemWindow()
@@ -176,12 +176,12 @@ public class Inventory : MonoBehaviour
         selectedItemName.text = string.Empty;
         selectedItemDescription.text = string.Empty;
 
-        selectedItemStatNames.text = string.Empty;
-        selectedItemStatValues.text = string.Empty;
+        //selectedItemStatNames.text = string.Empty;
+        //selectedItemStatValues.text = string.Empty;
 
         useButton.SetActive(false);
-        equipButton.SetActive(false);
-        unEquipButton.SetActive(false);
+        //equipButton.SetActive(false);
+        //unEquipButton.SetActive(false);
         dropButton.SetActive(false);
     }
 

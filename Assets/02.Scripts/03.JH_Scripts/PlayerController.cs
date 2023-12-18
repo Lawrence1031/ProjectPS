@@ -187,4 +187,9 @@ public class PlayerController : MonoBehaviour
        Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
        Gizmos.DrawRay(transform.position + (-transform.right * 0.2f), Vector3.down);
     }
+
+    public void ToggleCursor(bool toggle)
+    {
+        
+    }
 }
