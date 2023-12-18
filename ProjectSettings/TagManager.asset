@@ -12,9 +12,10 @@ TagManager:
   - Water
   - UI
   - Player
-  - Ground
+  - Objects
   - Interactable
-  - 
+  - Doors
+  - Ground
   - 
   - 
   - 
