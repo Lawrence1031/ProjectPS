@@ -28,4 +28,8 @@ public class ItemData : ScriptableObject
     public GameObject dropPrefab;
 
     public bool IsRoomOpen;
+
+    [Header("Stacking")]
+    public bool canStack;
+    public int maxStackAmount;
 }
