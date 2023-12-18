@@ -5,7 +5,10 @@ using UnityEngine.UIElements;
 
 public class DoorAction : MonoBehaviour
 {
+    //Inventory playerInventory = Inventory.Instance;
+
     public GameObject Door;
+    public bool needKey = false;
     private bool isOpen = true;
     private Vector3 initialPosition;
     private Vector3 targetPosition;
@@ -20,10 +23,32 @@ public class DoorAction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ToggleDoor();
+            if (needKey)
+            {
+                if (isOpen || PlayerHasKey())
+                {
+                    ToggleDoor();
+                }
+                else
+                {
+                    Debug.Log("열쇠가 필요합니다");
+                }
+            }
+            else
+            {
+                ToggleDoor();
+            }
         }
     }
 
+    private bool PlayerHasKey()
+    {
+        //if (playerInventory != null)
+        //{
+        //    return playerInventory.HasKey();
+        //}
+        return false;
+    }
 
 
     /// <summary>
@@ -31,17 +56,6 @@ public class DoorAction : MonoBehaviour
     /// </summary>
     public void ToggleDoor()
     {
-        //if (hasKey)
-        //{
-        //    isOpen = true;
-        //    transform.localScale = new Vector3(3, 3, 1);
-        //    transform.position = new Vector3(0, 3f, 50);
-        //}
-        //else
-        //{
-        //    Debug.Log("You need a Key. Find the Key in this room");
-        //}
-
         if (isOpen)
         {
             Debug.Log("Door is Opened");

@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 136482189}
+  needKey: 1
 --- !u!1001 &153517468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1213,6 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 434344844}
+  needKey: 0
 --- !u!1 &462191503
 GameObject:
   m_ObjectHideFlags: 0
