@@ -29,7 +29,7 @@ public class InteractionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ·¹ÀÌ¸¦ ½÷ ¾Õ ¿ÀºêÁ§Æ®¸¦ °¡¸®Å²´Ù.
+    /// ë ˆì´ë¥¼ ì´ ì• ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ë¦¬í‚¨ë‹¤.
     /// </summary>
     private void Update()
     {
@@ -37,7 +37,7 @@ public class InteractionManager : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            // Á¤Áß¾Ó¿¡ ·¹ÀÌ¸¦ ½ô
+            // ì •ì¤‘ì•™ì— ë ˆì´ë¥¼ ì¨
             Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
@@ -57,7 +57,7 @@ public class InteractionManager : MonoBehaviour
                     curInteractGameObject = hit.collider.gameObject;
                     curInteraction = hit.collider.GetComponent<IInteraction>();
                     SetPromptText();
-                    /// ¿©±â±îÁö°¡ ·¹ÀÌ¸¦ ½î°í ¹Ù¶óº» Á¤µµ±îÁöÀÓ ¾Æ·¡´Â ¿ÀºêÁ§Æ®µé ¸¶´Ù interactionÀÌ ´Ş¶ó¾ßÇÔ
+                    /// ì—¬ê¸°ê¹Œì§€ê°€ ë ˆì´ë¥¼ ì˜ê³  ë°”ë¼ë³¸ ì •ë„ê¹Œì§€ì„ ì•„ë˜ëŠ” ì˜¤ë¸Œì íŠ¸ë“¤ ë§ˆë‹¤ interactionì´ ë‹¬ë¼ì•¼í•¨
                 }
                
             }
@@ -68,7 +68,7 @@ public class InteractionManager : MonoBehaviour
                     promptText.gameObject.SetActive(false);
                 }
 
-                ///Æò½Ã¿¡ null
+                ///í‰ì‹œì— null
                 curInteractGameObject = null;
                 curInteraction = null;
                 promptText.gameObject.SetActive(false);
@@ -78,7 +78,7 @@ public class InteractionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÅØ½ºÆ® Ãâ·Â
+    /// í…ìŠ¤íŠ¸ ì¶œë ¥
     /// </summary>
     private void SetPromptText()
     {
@@ -93,7 +93,7 @@ public class InteractionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// »óÈ£ÀÛ¿ë
+    /// ìƒí˜¸ì‘ìš©
     /// </summary>
     public void OnInteractInput(InputAction.CallbackContext callbackContext)
     {

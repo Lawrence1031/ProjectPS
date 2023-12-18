@@ -13,7 +13,7 @@ public class CamerController : MonoBehaviour
     }
 
     /// <summary>
-    /// ��Ȱ��ȭ
+    /// 비활성화
     /// </summary>
     void DeactivateAllCameras()
     {
@@ -25,7 +25,7 @@ public class CamerController : MonoBehaviour
     }
 
     /// <summary>
-    /// ī�޶� Ȱ��ȭ
+    /// 카메라 활성화
     /// </summary>
     /// <param name="camera"></param>
     public void ActivateCamera(Camera camera)

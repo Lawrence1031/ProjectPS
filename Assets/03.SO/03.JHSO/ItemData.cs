@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// ¾ÆÀÌÅÛ Á¾·ùµé
+/// ì•„ì´í…œ ì¢…ë¥˜ë“¤
 /// </summary>
 public enum ItemType
 {
@@ -14,7 +14,7 @@ public enum ItemType
 }
 
 /// <summary>
-/// ¾ÆÀÌÅÛ¿¡ ÇÊ¿äÇÑ ¿ä¼Òµé
+/// ì•„ì´í…œì— í•„ìš”í•œ ìš”ì†Œë“¤
 /// </summary>
 /// 
 [CreateAssetMenu(fileName ="_item", menuName ="SO Menu/NewItem ", order = 0)]

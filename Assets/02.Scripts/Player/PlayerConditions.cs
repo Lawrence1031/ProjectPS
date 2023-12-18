@@ -9,88 +9,88 @@ public interface IDamagable
 
 {
     void TakePhysicalDamage(float damageAmount);
-    // ÇÇÇØ¸¦ ¹Ş´Â ±â´ÉÀ» Á¤ÀÇÇÏ´Â ¸Ş¼Òµå
-    // ¸Å°³º¯¼ö: damageAmount - ¹Ş´Â ÇÇÇØÀÇ ¾çÀ» ³ªÅ¸³½´Ù. ÀÌ °ªÀº ÀÏ¹İÀûÀ¸·Î
-    // ¾çÀÇ ¼ö·Î Ç¥ÇöµÇ¸ç, °´Ã¼ÀÇ Ã¼·Â µî¿¡ ¿µÇâÀ» ÁØ´Ù.
+    // í”¼í•´ë¥¼ ë°›ëŠ” ê¸°ëŠ¥ì„ ì •ì˜í•˜ëŠ” ë©”ì†Œë“œ
+    // ë§¤ê°œë³€ìˆ˜: damageAmount - ë°›ëŠ” í”¼í•´ì˜ ì–‘ì„ ë‚˜íƒ€ë‚¸ë‹¤. ì´ ê°’ì€ ì¼ë°˜ì ìœ¼ë¡œ
+    // ì–‘ì˜ ìˆ˜ë¡œ í‘œí˜„ë˜ë©°, ê°ì²´ì˜ ì²´ë ¥ ë“±ì— ì˜í–¥ì„ ì¤€ë‹¤.
 }
 
 public class PlayerConditions : MonoBehaviour, IDamagable
 {
-    // Condition Å¬·¡½º´Â ÇÃ·¹ÀÌ¾îÀÇ Ã¼·Â°ú °ü·ÃµÈ Á¤º¸¸¦ °ü¸®
+    // Condition í´ë˜ìŠ¤ëŠ” í”Œë ˆì´ì–´ì˜ ì²´ë ¥ê³¼ ê´€ë ¨ëœ ì •ë³´ë¥¼ ê´€ë¦¬
     [System.Serializable]
     public class Condition
     {
-        public float curValue;  // ÇöÀç Ã¼·Â °ª
-        public float maxValue;  // ÃÖ´ë Ã¼·Â °ª
-        public float startValue;// ½ÃÀÛ ½Ã Ã¼·Â °ª
-        public Image uiBar;     // UI »óÀÇ Ã¼·Â ¹Ù
+        public float curValue;  // í˜„ì¬ ì²´ë ¥ ê°’
+        public float maxValue;  // ìµœëŒ€ ì²´ë ¥ ê°’
+        public float startValue;// ì‹œì‘ ì‹œ ì²´ë ¥ ê°’
+        public Image uiBar;     // UI ìƒì˜ ì²´ë ¥ ë°”
 
-        // Ã¼·ÂÀ» Áõ°¡½ÃÅ°´Â ¸Ş¼Òµå
+        // ì²´ë ¥ì„ ì¦ê°€ì‹œí‚¤ëŠ” ë©”ì†Œë“œ
         public void Add(float amount) => curValue = Mathf.Min(curValue + amount, maxValue);
 
-        // Ã¼·ÂÀ» °¨¼Ò½ÃÅ°´Â ¸Ş¼Òµå
+        // ì²´ë ¥ì„ ê°ì†Œì‹œí‚¤ëŠ” ë©”ì†Œë“œ
         public void Subtract(float amount) => curValue = Mathf.Max(curValue - amount, 0.0f);
 
-        // ÇöÀç Ã¼·ÂÀÇ ¹éºĞÀ²À» ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+        // í˜„ì¬ ì²´ë ¥ì˜ ë°±ë¶„ìœ¨ì„ ë°˜í™˜í•˜ëŠ” ë©”ì†Œë“œ
         public float GetPercentage() => curValue / maxValue;
     }
 
-    public Condition health; // ÇÃ·¹ÀÌ¾îÀÇ Ã¼·Â »óÅÂ
-    public UnityEvent onTakeDamage; // ÇÇÇØ¸¦ ¹Ş¾ÒÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®
-    private bool isDead = false; // ÇÃ·¹ÀÌ¾îÀÇ »ç¸Á »óÅÂ¸¦ ÃßÀûÇÏ´Â ÇÃ·¡±×
+    public Condition health; // í”Œë ˆì´ì–´ì˜ ì²´ë ¥ ìƒíƒœ
+    public UnityEvent onTakeDamage; // í”¼í•´ë¥¼ ë°›ì•˜ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸
+    private bool isDead = false; // í”Œë ˆì´ì–´ì˜ ì‚¬ë§ ìƒíƒœë¥¼ ì¶”ì í•˜ëŠ” í”Œë˜ê·¸
 
     void Start()
     {
-        health.curValue = health.startValue; // ½ÃÀÛ ½Ã Ã¼·ÂÀ» ÃÊ±âÈ­
-        UpdateHealthUI(); // UI¸¦ ¾÷µ¥ÀÌÆ®
+        health.curValue = health.startValue; // ì‹œì‘ ì‹œ ì²´ë ¥ì„ ì´ˆê¸°í™”
+        UpdateHealthUI(); // UIë¥¼ ì—…ë°ì´íŠ¸
     }
 
-    // ÇÇÇØ¸¦ ¹Ş´Â ÀÎÅÍÆäÀÌ½º ¸Ş¼Òµå ±¸Çö
+    // í”¼í•´ë¥¼ ë°›ëŠ” ì¸í„°í˜ì´ìŠ¤ ë©”ì†Œë“œ êµ¬í˜„
     public void TakePhysicalDamage(float damageAmount)
     {
-        if (isDead) return; // ÀÌ¹Ì »ç¸ÁÇÑ °æ¿ì Ãß°¡ ÇÇÇØ¸¦ ¹«½Ã
+        if (isDead) return; // ì´ë¯¸ ì‚¬ë§í•œ ê²½ìš° ì¶”ê°€ í”¼í•´ë¥¼ ë¬´ì‹œ
 
-        health.Subtract(damageAmount); // Ã¼·Â °¨¼Ò
-        UpdateHealthUI(); // UI ¾÷µ¥ÀÌÆ®
+        health.Subtract(damageAmount); // ì²´ë ¥ ê°ì†Œ
+        UpdateHealthUI(); // UI ì—…ë°ì´íŠ¸
 
-        // Ã¼·ÂÀÌ 0 ÀÌÇÏ·Î ¶³¾îÁö¸é »ç¸Á Ã³¸®
+        // ì²´ë ¥ì´ 0 ì´í•˜ë¡œ ë–¨ì–´ì§€ë©´ ì‚¬ë§ ì²˜ë¦¬
         if (health.curValue <= 0.0f && !isDead)
         {
             Die();
         }
     }
 
-    // Ã¼·Â UI¸¦ ¾÷µ¥ÀÌÆ®ÇÏ´Â ¸Ş¼Òµå
+    // ì²´ë ¥ UIë¥¼ ì—…ë°ì´íŠ¸í•˜ëŠ” ë©”ì†Œë“œ
     private void UpdateHealthUI()
     {
         if (health.uiBar != null)
         {
-            health.uiBar.fillAmount = health.GetPercentage(); // Ã¼·Â ¹ÙÀÇ fillAmount¸¦ ¾÷µ¥ÀÌÆ®
+            health.uiBar.fillAmount = health.GetPercentage(); // ì²´ë ¥ ë°”ì˜ fillAmountë¥¼ ì—…ë°ì´íŠ¸
         }
     }
 
-    // »ç¸Á Ã³¸® ¸Ş¼Òµå
+    // ì‚¬ë§ ì²˜ë¦¬ ë©”ì†Œë“œ
     public void Die()
     {
         if (!isDead)
         {
-            Debug.Log("ÇÃ·¹ÀÌ¾î°¡ Á×¾ú´Ù.");
+            Debug.Log("í”Œë ˆì´ì–´ê°€ ì£½ì—ˆë‹¤.");
             isDead = true;
 
-            // ÀÓ½Ã·Î ÇöÀç ¾ÀÀ» ´Ù½Ã ·ÎµåÇÏ¿© °ÔÀÓÀ» Àç½ÃÀÛ
+            // ì„ì‹œë¡œ í˜„ì¬ ì”¬ì„ ë‹¤ì‹œ ë¡œë“œí•˜ì—¬ ê²Œì„ì„ ì¬ì‹œì‘
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    // Áö¿¬µÈ ÇÇÇØ Ã³¸®¸¦ À§ÇÑ ÄÚ·çÆ¾
+    // ì§€ì—°ëœ í”¼í•´ ì²˜ë¦¬ë¥¼ ìœ„í•œ ì½”ë£¨í‹´
     public bool IsDead() => isDead;
 
     public void DelayedDamage(int damageAmount, float delay) => StartCoroutine(DelayDamage(damageAmount, delay));
 
     private IEnumerator DelayDamage(int damageAmount, float delay)
     {
-        yield return new WaitForSeconds(delay); // ÁöÁ¤µÈ ½Ã°£¸¸Å­ ´ë±â
-        if (!isDead) TakePhysicalDamage(damageAmount); // ´ë±â ÈÄ ÇÇÇØ Àû¿ë
+        yield return new WaitForSeconds(delay); // ì§€ì •ëœ ì‹œê°„ë§Œí¼ ëŒ€ê¸°
+        if (!isDead) TakePhysicalDamage(damageAmount); // ëŒ€ê¸° í›„ í”¼í•´ ì ìš©
     }
 }
 

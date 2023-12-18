@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 
 
 /// <summary>
-/// ÇÃ·¹ÀÌ¾îÀÇ ÄÁÆ®·Ñ·¯
+/// í”Œë ˆì´ì–´ì˜ ì»¨íŠ¸ë¡¤ëŸ¬
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    // ÀÌµ¿ °ü·Ã
+    // ì´ë™ ê´€ë ¨
     [Header("Movement")]
     public float moveSpeed;
     public float jumpForce;
@@ -18,12 +18,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _curMovementInput;
 
-    // Á¶ÁØÁ¡
+    // ì¡°ì¤€ì 
     [Header("Look")]
     public Transform cameraContainer;
     public float minXLook;
     public float maxXLook;
-    public float lookSensitivity; // ¹Î°¨µµ
+    public float lookSensitivity; // ë¯¼ê°ë„
 
     private float _camCurXRot;
     private Vector2 mouseDelta;
@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    ///  ¿òÁ÷ÀÏ ¶§ ÇÊ¿äÇÑ °ª ÇÒ´ç
+    ///  ì›€ì§ì¼ ë•Œ í•„ìš”í•œ ê°’ í• ë‹¹
     /// </summary>
     private void Move()
     {
-        // ¾ÕÀ¸·Î ÀÌµ¿ÇÏ¸é inputaction¿¡¼­ ¹Ş¾Æ¿Â y¸¦, ¿ìÃøÀ¸·Î°¡¸é inputaction¿¡¼­ ¹Ş¾Æ¿Â xÃàÀ» °öÇÑ´Ù.
+        // ì•ìœ¼ë¡œ ì´ë™í•˜ë©´ inputactionì—ì„œ ë°›ì•„ì˜¨ yë¥¼, ìš°ì¸¡ìœ¼ë¡œê°€ë©´ inputactionì—ì„œ ë°›ì•„ì˜¨ xì¶•ì„ ê³±í•œë‹¤.
         Vector3 dir = transform.forward * _curMovementInput.y + transform.right * _curMovementInput.x; 
         dir *= moveSpeed;
         dir.y = _rigidbody.velocity.y;
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸¶¿ì½º·Î Ä«¸Ş¶ó¸¦ ¿òÁ÷ÀÓ
+    /// ë§ˆìš°ìŠ¤ë¡œ ì¹´ë©”ë¼ë¥¼ ì›€ì§ì„
     /// </summary>
     void CameraLook()
     {
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸¶¿ì½º µ¨Å¸°ªÀ¸·Î ½Ã¾ß Á¶Á¤ ¹× InputSystem ¹Ş¾Æ¿È
+    /// ë§ˆìš°ìŠ¤ ë¸íƒ€ê°’ìœ¼ë¡œ ì‹œì•¼ ì¡°ì • ë° InputSystem ë°›ì•„ì˜´
     /// </summary>
     public void OnLookInput(InputAction.CallbackContext context)
     {
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
 
     /// <summary>
-    /// InputSystem À¸·Î ¿òÁ÷ÀÓ ±¸Çö
+    /// InputSystem ìœ¼ë¡œ ì›€ì§ì„ êµ¬í˜„
     /// </summary>
     public void OnMoveInput(InputAction.CallbackContext context)
     {
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Á¡ÇÁ InputSystem
+    /// ì í”„ InputSystem
     /// </summary>
     /// <param name="context"></param>
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
 
     /// <summary>
-    /// Ground Ã¼Å©
+    /// Ground ì²´í¬
     /// </summary>
     public bool IsGround()
     {
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             new Ray(transform.position +(-transform.right * 0.2f) +(Vector3.up * 0.01f), Vector3.down),
         };
 
-        // 4Áß ÇÏ³ª¶óµµ ground¿Í ¸Â´ê¾Ò´Ù¸é
+        // 4ì¤‘ í•˜ë‚˜ë¼ë„ groundì™€ ë§ë‹¿ì•˜ë‹¤ë©´
         for(int i = 0; i < rays.Length; i++)
         {
             if (Physics.Raycast(rays[i], 0.1f, grounLayerMask)) 
@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Gizmos ±×¸®±â
+    /// Gizmos ê·¸ë¦¬ê¸°
     /// </summary>
     private void OnDrawGizmos()
     {

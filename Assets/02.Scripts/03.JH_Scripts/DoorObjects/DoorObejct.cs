@@ -7,7 +7,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     public DoorData DoorData;
 
     /// <summary>
-    /// Door ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§ Ç¥½Ã
+    /// Door ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„ í‘œì‹œ
     /// </summary>
     /// <returns></returns>
     public string GetInteractPrompt()
@@ -16,7 +16,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     }
 
     /// <summary>
-    /// door¿ÍÀÇ »óÈ£ÀÛ¿ë
+    /// doorì™€ì˜ ìƒí˜¸ì‘ìš©
     /// </summary>
     public void OnInteract()
     {

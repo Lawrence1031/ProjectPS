@@ -5,23 +5,23 @@ using UnityEngine;
 public class TrapDamage : MonoBehaviour
 {
     [Header("FootManager")]
-    public int damagePerSecond = 30; // ÃÊ´ç ÇÇÇØ·®
+    public int damagePerSecond = 30; // ì´ˆë‹¹ í”¼í•´ëŸ‰
     [Header("BoardManager")]
-    public bool isTrap = false;      // ÀÌ ¹ßÆÇÀÌ ÇÔÁ¤ÀÎÁö ¿©ºÎ¸¦ °áÁ¤ÇÏ´Â ÇÃ·¡±×
-    public int damageAmount = 100;   // ÇÃ·¹ÀÌ¾î¿¡°Ô ÀÔÈú ÇÇÇØ·®
-    public float damageDelay = 1.0f; // ÇÇÇØ¸¦ ÀÔÈ÷´Âµ¥±îÁö °É¸®´Â ½Ã°£
+    public bool isTrap = false;      // ì´ ë°œíŒì´ í•¨ì •ì¸ì§€ ì—¬ë¶€ë¥¼ ê²°ì •í•˜ëŠ” í”Œë˜ê·¸
+    public int damageAmount = 100;   // í”Œë ˆì´ì–´ì—ê²Œ ì…í í”¼í•´ëŸ‰
+    public float damageDelay = 1.0f; // í”¼í•´ë¥¼ ì…íˆëŠ”ë°ê¹Œì§€ ê±¸ë¦¬ëŠ” ì‹œê°„
 
-    private PlayerConditions targetPlayerConditions; // ÇÃ·¹ÀÌ¾î Á¶°Ç ÂüÁ¶¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
+    private PlayerConditions targetPlayerConditions; // í”Œë ˆì´ì–´ ì¡°ê±´ ì°¸ì¡°ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
     private void OnTriggerStay(Collider other)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ FootManager ÇÔÁ¤ ¿µ¿ª ¾È¿¡ ÀÖÀ» ¶§ Ã³¸®
+        // í”Œë ˆì´ì–´ê°€ FootManager í•¨ì • ì˜ì—­ ì•ˆì— ìˆì„ ë•Œ ì²˜ë¦¬
         if (other.CompareTag("Player"))
         {
             PlayerConditions player = other.GetComponent<PlayerConditions>();
             if (player != null)
             {
-                // ÃÊ´ç ÇÇÇØ Àû¿ë
+                // ì´ˆë‹¹ í”¼í•´ ì ìš©
                 player.TakePhysicalDamage(damagePerSecond * Time.deltaTime);
             }
         }
@@ -29,17 +29,17 @@ public class TrapDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // ÇÃ·¹ÀÌ¾î°¡ BoardManager ÇÔÁ¤ ¹ßÆÇ°ú Ãæµ¹ÇÒ ¶§ Ã³¸®
+        // í”Œë ˆì´ì–´ê°€ BoardManager í•¨ì • ë°œíŒê³¼ ì¶©ëŒí•  ë•Œ ì²˜ë¦¬
         if (collision.gameObject.CompareTag("Player") && isTrap)
         {
             targetPlayerConditions = collision.gameObject.GetComponent<PlayerConditions>();
             if (targetPlayerConditions != null)
             {
-                // ¹ßÆÇÀ» ºñÈ°¼ºÈ­ÇÏ°í Áö¿¬ ÇÇÇØ Àû¿ë
+                // ë°œíŒì„ ë¹„í™œì„±í™”í•˜ê³  ì§€ì—° í”¼í•´ ì ìš©
                 gameObject.SetActive(false);
                 targetPlayerConditions.DelayedDamage(damageAmount, damageDelay);
             }
-            isTrap = false; // ÇÔÁ¤À» ºñÈ°¼ºÈ­ÇÏ¿© Áßº¹ ÇÇÇØ¸¦ ¹æÁö
+            isTrap = false; // í•¨ì •ì„ ë¹„í™œì„±í™”í•˜ì—¬ ì¤‘ë³µ í”¼í•´ë¥¼ ë°©ì§€
         }
     }
 }

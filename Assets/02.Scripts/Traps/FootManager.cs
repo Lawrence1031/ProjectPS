@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FootManager : MonoBehaviour
 {
-    public GameObject trapPrefab; // »ç¿ëÇÒ ÇÔÁ¤ ÇÁ¸®ÆÕ
-    public int trapCount = 3;     // ¹èÄ¡ÇÒ ÇÔÁ¤ÀÇ ¼ö
-    public Vector2 floorScale = new Vector2(2f, 2f); // ¹Ù´Ú ¿ÀºêÁ§Æ®ÀÇ ½ºÄÉÀÏ
+    public GameObject trapPrefab; // ì‚¬ìš©í•  í•¨ì • í”„ë¦¬íŒ¹
+    public int trapCount = 3;     // ë°°ì¹˜í•  í•¨ì •ì˜ ìˆ˜
+    public Vector2 floorScale = new Vector2(2f, 2f); // ë°”ë‹¥ ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤ì¼€ì¼
 
     void Start()
     {
-        SpawnTraps(); // °ÔÀÓ ½ÃÀÛ ½Ã ÇÔÁ¤ »ı¼º
+        SpawnTraps(); // ê²Œì„ ì‹œì‘ ì‹œ í•¨ì • ìƒì„±
     }
 
     void SpawnTraps()
@@ -19,14 +19,14 @@ public class FootManager : MonoBehaviour
 
         for (int i = 0; i < trapCount; i++)
         {
-            // ¹Ù´Ú ¿ÀºêÁ§Æ®ÀÇ Å©±â¸¦ ±âÁØÀ¸·Î ·£´ı À§Ä¡¸¦ »ı¼º
+            // ë°”ë‹¥ ì˜¤ë¸Œì íŠ¸ì˜ í¬ê¸°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ëœë¤ ìœ„ì¹˜ë¥¼ ìƒì„±
             Vector3 randomPosition = new Vector3(
-                Random.Range(-floorSize.x / 2, floorSize.x / 2), // XÃà ·£´ı À§Ä¡
-                0.5f, // YÃà À§Ä¡ (¹Ù´Ú¿¡ ±ÙÁ¢ÇÏµµ·Ï ¼³Á¤)
-                Random.Range(-floorSize.y / 2, floorSize.y / 2)  // ZÃà ·£´ı À§Ä¡
+                Random.Range(-floorSize.x / 2, floorSize.x / 2), // Xì¶• ëœë¤ ìœ„ì¹˜
+                0.5f, // Yì¶• ìœ„ì¹˜ (ë°”ë‹¥ì— ê·¼ì ‘í•˜ë„ë¡ ì„¤ì •)
+                Random.Range(-floorSize.y / 2, floorSize.y / 2)  // Zì¶• ëœë¤ ìœ„ì¹˜
             );
 
-            // ÇÔÁ¤ ÇÁ¸®ÆÕÀ» ÀÎ½ºÅÏ½ºÈ­ÇÏ¿© ·£´ı À§Ä¡¿¡ ¹èÄ¡
+            // í•¨ì • í”„ë¦¬íŒ¹ì„ ì¸ìŠ¤í„´ìŠ¤í™”í•˜ì—¬ ëœë¤ ìœ„ì¹˜ì— ë°°ì¹˜
             Instantiate(trapPrefab, randomPosition, Quaternion.identity, transform);
         }
     }

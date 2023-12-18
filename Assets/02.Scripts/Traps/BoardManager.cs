@@ -4,65 +4,65 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    public GameObject boardPrefab; // »ç¿ëÇÒ ¹ßÆÇ ÇÁ¸®ÆÕ
-    public int boardSize = 4;      // ¹ßÆÇ ¹è¿­ÀÇ Å©±â (¿©±â¼­´Â 4x4)
-    public float spacing = 3.0f;   // °¢ ¹ßÆÇ °£ÀÇ °£°İ
+    public GameObject boardPrefab; // ì‚¬ìš©í•  ë°œíŒ í”„ë¦¬íŒ¹
+    public int boardSize = 4;      // ë°œíŒ ë°°ì—´ì˜ í¬ê¸° (ì—¬ê¸°ì„œëŠ” 4x4)
+    public float spacing = 3.0f;   // ê° ë°œíŒ ê°„ì˜ ê°„ê²©
 
     void Start()
     {
-        SpawnBoards(); // ½ÃÀÛ ½Ã ¹ßÆÇ »ı¼º
+        SpawnBoards(); // ì‹œì‘ ì‹œ ë°œíŒ ìƒì„±
     }
 
     void SpawnBoards()
     {
-        List<GameObject> allBoards = new List<GameObject>(); // ¸ğµç ¹ßÆÇÀ» ÀúÀåÇÒ ¸®½ºÆ®
+        List<GameObject> allBoards = new List<GameObject>(); // ëª¨ë“  ë°œíŒì„ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
 
-        // ÇöÀç ¿ÀºêÁ§Æ®ÀÇ À§Ä¡¸¦ ¹ßÆÇ »ı¼ºÀÇ ±âÁØÁ¡À¸·Î »ç¿ë
+        // í˜„ì¬ ì˜¤ë¸Œì íŠ¸ì˜ ìœ„ì¹˜ë¥¼ ë°œíŒ ìƒì„±ì˜ ê¸°ì¤€ì ìœ¼ë¡œ ì‚¬ìš©
         Vector3 basePosition = transform.position;
 
-        // ÀÌÁß ¹İº¹¹®À» »ç¿ëÇÏ¿© ±×¸®µå ÇüÅÂ·Î ¹ßÆÇ »ı¼º
+        // ì´ì¤‘ ë°˜ë³µë¬¸ì„ ì‚¬ìš©í•˜ì—¬ ê·¸ë¦¬ë“œ í˜•íƒœë¡œ ë°œíŒ ìƒì„±
         for (int x = 0; x < boardSize; x++)
         {
             for (int z = 0; z < boardSize; z++)
             {
-                // ¹ßÆÇÀÇ À§Ä¡ °è»ê
+                // ë°œíŒì˜ ìœ„ì¹˜ ê³„ì‚°
                 Vector3 position = basePosition + new Vector3(x * spacing, 0, z * spacing);
-                // ¹ßÆÇ ÇÁ¸®ÆÕÀ» ÀÎ½ºÅÏ½ºÈ­ÇÏ¿© »ı¼º
+                // ë°œíŒ í”„ë¦¬íŒ¹ì„ ì¸ìŠ¤í„´ìŠ¤í™”í•˜ì—¬ ìƒì„±
                 GameObject board = Instantiate(boardPrefab, position, Quaternion.identity, transform);
-                allBoards.Add(board); // »ı¼ºµÈ ¹ßÆÇÀ» ¸®½ºÆ®¿¡ Ãß°¡
+                allBoards.Add(board); // ìƒì„±ëœ ë°œíŒì„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             }
         }
 
-        // »ı¼ºµÈ ¹ßÆÇ Áß ÀÏºÎ¸¦ ÇÔÁ¤À¸·Î ¼³Á¤
+        // ìƒì„±ëœ ë°œíŒ ì¤‘ ì¼ë¶€ë¥¼ í•¨ì •ìœ¼ë¡œ ì„¤ì •
         SetRandomTraps(allBoards);
     }
 
     void SetRandomTraps(List<GameObject> boards)
     {
-        int totalBoards = boardSize * boardSize;       // ÃÑ ¹ßÆÇÀÇ ¼ö
-        int trapsToSet = totalBoards / 4;              // ÀüÃ¼ ¹ßÆÇ Áß 25%¸¦ ÇÔÁ¤À¸·Î ¼³Á¤
+        int totalBoards = boardSize * boardSize;       // ì´ ë°œíŒì˜ ìˆ˜
+        int trapsToSet = totalBoards / 4;              // ì „ì²´ ë°œíŒ ì¤‘ 25%ë¥¼ í•¨ì •ìœ¼ë¡œ ì„¤ì •
 
-        Shuffle(boards); // ¹ßÆÇ ¸®½ºÆ®¸¦ ¹«ÀÛÀ§·Î ¼¯À½
+        Shuffle(boards); // ë°œíŒ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¬´ì‘ìœ„ë¡œ ì„ìŒ
 
-        // ÁöÁ¤µÈ ¼ö¸¸Å­ ÇÔÁ¤ ¹ßÆÇ ¼³Á¤
+        // ì§€ì •ëœ ìˆ˜ë§Œí¼ í•¨ì • ë°œíŒ ì„¤ì •
         for (int i = 0; i < trapsToSet; i++)
         {
             TrapDamage trapDamage = boards[i].GetComponent<TrapDamage>();
             if (trapDamage != null)
             {
-                trapDamage.isTrap = true; // ÇØ´ç ¹ßÆÇÀ» ÇÔÁ¤À¸·Î ¼³Á¤
+                trapDamage.isTrap = true; // í•´ë‹¹ ë°œíŒì„ í•¨ì •ìœ¼ë¡œ ì„¤ì •
             }
         }
     }
 
-    // ¸®½ºÆ®¸¦ ¹«ÀÛÀ§·Î ¼¯´Â ¸Ş¼Òµå
+    // ë¦¬ìŠ¤íŠ¸ë¥¼ ë¬´ì‘ìœ„ë¡œ ì„ëŠ” ë©”ì†Œë“œ
     void Shuffle(List<GameObject> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
             GameObject temp = list[i];
-            int randomIndex = Random.Range(i, list.Count); // ¹«ÀÛÀ§ ÀÎµ¦½º ¼±ÅÃ
-            list[i] = list[randomIndex];                   // ¿ä¼ÒµéÀ» ±³È¯ÇÏ¿© ¼¯À½
+            int randomIndex = Random.Range(i, list.Count); // ë¬´ì‘ìœ„ ì¸ë±ìŠ¤ ì„ íƒ
+            list[i] = list[randomIndex];                   // ìš”ì†Œë“¤ì„ êµí™˜í•˜ì—¬ ì„ìŒ
             list[randomIndex] = temp;
         }
     }

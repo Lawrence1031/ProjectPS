@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-///  ÈùÆ® ¿ÀºêÁ§Æ® Å¬·¡½º
+///  íŒíŠ¸ ì˜¤ë¸Œì íŠ¸ í´ë˜ìŠ¤
 /// </summary>
 public class HintObject : MonoBehaviour, IInteraction
 {
@@ -12,7 +12,7 @@ public class HintObject : MonoBehaviour, IInteraction
     public Camera _playerCamera;
 
     /// <summary>
-    /// ÈùÆ® ¿ÀºêÁ§Æ®ÀÇ displayName return
+    /// íŒíŠ¸ ì˜¤ë¸Œì íŠ¸ì˜ displayName return
     /// </summary>
     /// <returns></returns>
     public string GetInteractPrompt()
@@ -21,7 +21,7 @@ public class HintObject : MonoBehaviour, IInteraction
     }
 
     /// <summary>
-    /// ÈùÆ®¿ÀºêÁ§Æ®¿Í »óÈ£ÀÛ¿ëÇßÀ» ½Ã 
+    /// íŒíŠ¸ì˜¤ë¸Œì íŠ¸ì™€ ìƒí˜¸ì‘ìš©í–ˆì„ ì‹œ 
     /// </summary>
     public void OnInteract()
     {
@@ -29,7 +29,7 @@ public class HintObject : MonoBehaviour, IInteraction
         
         if (cameraController != null)
         {
-            Debug.Log("È£Ãâ2");
+            Debug.Log("í˜¸ì¶œ2");
             cameraController.ActivateCamera(_changeCamera);
 
         }
@@ -41,7 +41,7 @@ public class HintObject : MonoBehaviour, IInteraction
 
         if (cameraController != null)
         {
-            Debug.Log("È£Ãâ3");
+            Debug.Log("í˜¸ì¶œ3");
             cameraController.ActivateCamera(_playerCamera);
 
         }
