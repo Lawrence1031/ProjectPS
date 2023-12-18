@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private float _camCurXRot;
     private Vector2 mouseDelta;
 
+    public GameObject inventoryWindow;
+
     [HideInInspector]
     public bool canLook = true;
     public bool isJump = false;
@@ -84,11 +86,15 @@ public class PlayerController : MonoBehaviour
     {
         if (_camera.gameObject.activeSelf == false)
         {
-            canLook = false;
+            ToggleCursor(true);
         }
-        else
+        else if (inventoryWindow.activeInHierarchy)
         {
-            canLook = true;
+            ToggleCursor(true);
+        }
+        else if (_camera.gameObject.activeSelf == true && inventoryWindow.activeInHierarchy == false)
+        {
+            ToggleCursor(false);
         }
 
         if (canLook)
@@ -99,12 +105,8 @@ public class PlayerController : MonoBehaviour
 
             transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
         }
-       else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
     }
+
 
     /// <summary>
     /// 마우스 델타값으로 시야 조정 및 InputSystem 받아옴
@@ -113,7 +115,6 @@ public class PlayerController : MonoBehaviour
     {
         mouseDelta = context.ReadValue<Vector2>();
     }
-
 
     /// <summary>
     /// InputSystem 으로 움직임 구현
@@ -181,7 +182,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+       Gizmos.color = Color.red;
        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f), Vector3.down);
        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f), Vector3.down);
        Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
@@ -190,6 +191,7 @@ public class PlayerController : MonoBehaviour
 
     public void ToggleCursor(bool toggle)
     {
-        
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }

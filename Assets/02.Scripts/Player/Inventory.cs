@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
     //public GameObject unEquipButton;
     public GameObject dropButton;
 
-    private int curEquipIndex;
+    //private int curEquipIndex;
 
     private PlayerController controller;
 
@@ -70,7 +70,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
     public void Toggle()
     {
         if (inventoryWindow.activeInHierarchy)
@@ -78,12 +77,14 @@ public class Inventory : MonoBehaviour
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke();
             controller.ToggleCursor(false);
+            
         }
         else
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke();
             controller.ToggleCursor(true);
+            
         }
     }
 
@@ -94,16 +95,16 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
-        //if (item.canStack)
-        //{
-        //    ItemSlot slotToStackTo = GetItemStack(item);
-        //    if (slotToStackTo != null)
-        //    {
-        //        slotToStackTo.quantity++;
-        //        UpdateUI();
-        //        return;
-        //    }
-        //}
+        if (item.canStack)
+        {
+            ItemSlot slotToStackTo = GetItemStack(item);
+            if (slotToStackTo != null)
+            {
+                slotToStackTo.quantity++;
+                UpdateUI();
+                return;
+            }
+        }
 
         ItemSlot emptySlot = GetEmptySlot();
 
@@ -133,16 +134,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //ItemSlot GetItemStack(ItemData item)
-    //{
-    //    for (int i = 0; i < slots.Length; i++)
-    //    {
-    //        if (slots[i].item == item && slots[i].quantity < item.maxStackAmount)
-    //            return slots[i];
-    //    }
+    ItemSlot GetItemStack(ItemData item)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == item && slots[i].quantity < item.maxStackAmount)
+                return slots[i];
+        }
 
-    //    return null;
-    //}
+        return null;
+    }
 
     ItemSlot GetEmptySlot()
     {
@@ -184,12 +185,6 @@ public class Inventory : MonoBehaviour
         //unEquipButton.SetActive(false);
         dropButton.SetActive(false);
     }
-
-
-
-
-
-
 
     public void OnDropButton()
     {

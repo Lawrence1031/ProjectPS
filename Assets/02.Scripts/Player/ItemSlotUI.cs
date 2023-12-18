@@ -13,7 +13,6 @@ public class ItemSlotUI : MonoBehaviour
     private Outline outline;
 
     public int index;
-    public bool equipped;
 
     private void Awake()
     {
@@ -27,10 +26,6 @@ public class ItemSlotUI : MonoBehaviour
         icon.sprite = slot.item.icon;
         quatityText.text = slot.quantity > 1 ? slot.quantity.ToString() : string.Empty;
 
-        if (outline != null)
-        {
-            outline.enabled = equipped;
-        }
     }
 
     public void Clear()
@@ -42,6 +37,7 @@ public class ItemSlotUI : MonoBehaviour
 
     public void OnButtonClick()
     {
+       
         Inventory.instance.SelectItem(index);
     }
 }
