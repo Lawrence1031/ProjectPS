@@ -10,7 +10,7 @@ public interface IDamagable
 {
     void TakePhysicalDamage(float damageAmount);
     // 피해를 받는 기능을 정의하는 메소드
-    // 매개변수: damageAmount - 받는 피해의 양을 나타냅니다. 이 값은 일반적으로
+    // 매개변수: damageAmount - 받는 피해의 양을 나타낸다. 이 값은 일반적으로
     // 양의 수로 표현되며, 객체의 체력 등에 영향을 준다.
 }
 
@@ -41,14 +41,14 @@ public class PlayerConditions : MonoBehaviour, IDamagable
 
     void Start()
     {
-        health.curValue = health.startValue; // 시작 시 체력을 초기화합니다.
-        UpdateHealthUI(); // UI를 업데이트합니다.
+        health.curValue = health.startValue; // 시작 시 체력을 초기화
+        UpdateHealthUI(); // UI를 업데이트
     }
 
     // 피해를 받는 인터페이스 메소드 구현
     public void TakePhysicalDamage(float damageAmount)
     {
-        if (isDead) return; // 이미 사망한 경우 추가 피해를 무시합니다.
+        if (isDead) return; // 이미 사망한 경우 추가 피해를 무시
 
         health.Subtract(damageAmount); // 체력 감소
         UpdateHealthUI(); // UI 업데이트
@@ -65,7 +65,7 @@ public class PlayerConditions : MonoBehaviour, IDamagable
     {
         if (health.uiBar != null)
         {
-            health.uiBar.fillAmount = health.GetPercentage(); // 체력 바의 fillAmount를 업데이트합니다.
+            health.uiBar.fillAmount = health.GetPercentage(); // 체력 바의 fillAmount를 업데이트
         }
     }
 
@@ -77,7 +77,7 @@ public class PlayerConditions : MonoBehaviour, IDamagable
             Debug.Log("플레이어가 죽었다.");
             isDead = true;
 
-            // 임시로 현재 씬을 다시 로드하여 게임을 재시작합니다.
+            // 임시로 현재 씬을 다시 로드하여 게임을 재시작
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
