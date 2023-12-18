@@ -14,9 +14,9 @@ public class DoorButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Encounter");
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                Debug.Log("Pressed E Key");
+                Debug.Log("Pressed T Key");
                 doorAction.ToggleDoor();
             }
         }

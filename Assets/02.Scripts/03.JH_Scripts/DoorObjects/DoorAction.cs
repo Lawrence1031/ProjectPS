@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class DoorAction : MonoBehaviour
 {
     //Inventory playerInventory = Inventory.Instance;
-
+    public DoorData DoorData;
     public GameObject Door;
     public bool needKey = false;
     private bool isOpen = true;
@@ -17,6 +17,16 @@ public class DoorAction : MonoBehaviour
     {
         initialPosition = transform.position;
         targetPosition = initialPosition + new Vector3(0, 2.5f, 0);
+    }
+    public string GetInteractPrompt()
+    {
+        return string.Format("{0}", DoorData.displayName);
+    }
+
+    public void OnInteract()
+    {
+        gameObject.SetActive(false);
+
     }
 
     private void OnTriggerEnter(Collider other)
