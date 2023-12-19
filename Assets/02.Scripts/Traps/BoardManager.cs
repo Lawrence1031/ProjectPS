@@ -7,7 +7,8 @@ public class BoardManager : MonoBehaviour
     public GameObject boardPrefab; // 사용할 발판 프리팹
     public GameObject trapPrefab; // 사용할 발판 프리팹
     public int boardSize = 6;      // 발판 배열의 크기 (여기서는 6x6)
-    public float spacing = 3.0f;   // 각 발판 간의 간격
+    public float spacing = 0f;   // 각 발판 간의 간격
+    public float boardSizeFactor = 0f; // 발판 크기 배율
 
     private List<GameObject> allBoards = new List<GameObject>(); // 모든 발판을 저장할 리스트
 
@@ -39,6 +40,7 @@ public class BoardManager : MonoBehaviour
 
                 // 계산된 위치에 발판 프리팹 인스턴스화하여 생성
                 GameObject board = Instantiate(prefabToUse, position, Quaternion.identity, transform);
+                board.transform.localScale *= boardSizeFactor; // 발판 크기 조정
 
                 // 생성된 발판을 allBoards 리스트에 추가
                 allBoards.Add(board);

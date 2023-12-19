@@ -8,6 +8,7 @@ public class TrapDamage : MonoBehaviour
     public int damagePerSecond = 30; // 초당 피해량
     [Header("BoardManager")]
     public bool isTrap = false;      // 이 발판이 함정인지 여부를 결정하는 플래그
+    public int boardDamageAmount = 50; // 브로드 함정의 피해량
     [Header("DropManager")]
     public bool isDropTrap = false; // 드랍 함정인지 여부를 결정하는 플래그
     public int dropDamageAmount = 100; // 드랍 함정의 피해량
@@ -38,7 +39,7 @@ public class TrapDamage : MonoBehaviour
             {
                 if (isTrap)
                 {
-                    gameObject.SetActive(false);
+                    targetPlayerConditions.TakePhysicalDamage(boardDamageAmount);
                     isTrap = false; // 함정을 비활성화하여 중복 피해를 방지
                 }
 
