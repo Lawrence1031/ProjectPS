@@ -9,7 +9,9 @@ public class CinemachineController : MonoBehaviour
     public List<CinemachineVirtualCamera> cinViCameraList;
     public Dictionary<string, CinemachineVirtualCamera> cinViCameraDictionary;
 
-    public static CinemachineController Instance; // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+    public PlayerController playerController;
+
+    public static CinemachineController Instance; // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
    
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class CinemachineController : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // ÀÌ¹Ì ÀÎ½ºÅÏ½º°¡ ÀÖ´Ù¸é Áßº¹ »ı¼º ¹æÁö
+            Destroy(gameObject); // ì´ë¯¸ ì¸ìŠ¤í„´ìŠ¤ê°€ ìˆë‹¤ë©´ ì¤‘ë³µ ìƒì„± ë°©ì§€
         }
     }
 
@@ -28,7 +30,7 @@ public class CinemachineController : MonoBehaviour
     {
         cinViCameraDictionary = new Dictionary<string, CinemachineVirtualCamera>();
 
-        // µñ¼Å³Ê¸®¿¡ key°ª add
+        // ë”•ì…”ë„ˆë¦¬ì— keyê°’ add
         foreach(CinemachineVirtualCamera virtualCamera in cinViCameraList)
         {
             cinViCameraDictionary.Add(virtualCamera.Name, virtualCamera);
@@ -37,18 +39,24 @@ public class CinemachineController : MonoBehaviour
     }
 
     /// <summary>
-    /// Ä«¸Ş¶ó Ã¼ÀÎÁö ¸Å°³º¯¼ö 1 -> ¹Ù²Ü Ä«¸Ş¶ó, ¸Å°³º¯¼ö 2  -> ÇöÀç Ä«¸Ş¶ó 
+    /// ì¹´ë©”ë¼ ì²´ì¸ì§€ ë§¤ê°œë³€ìˆ˜ 1 -> ë°”ê¿€ ì¹´ë©”ë¼, ë§¤ê°œë³€ìˆ˜ 2  -> í˜„ì¬ ì¹´ë©”ë¼ 
     /// </summary>
-    public void OnChangedCineMachinePriority(string targetVirtualCamera, string curVirtualCamera)
+    public void OnChangedCineMachinePriority(string targetVirtualCamera, string curVirtualCamera, bool isPlayerStopMove)
     {
         if(cinViCameraDictionary.ContainsKey(targetVirtualCamera) && cinViCameraDictionary.ContainsKey(curVirtualCamera))
         {
             CinemachineVirtualCamera _targetVirtualCamera = cinViCameraDictionary[targetVirtualCamera];
             CinemachineVirtualCamera _curVirtualCamera = cinViCameraDictionary[curVirtualCamera];
 
-            //_targetVirtualCamera ¿ì¼±¼øÀ§
+            //_targetVirtualCamera ìš°ì„ ìˆœìœ„
             _targetVirtualCamera.Priority = 11;
             _curVirtualCamera.Priority = 10;
+
+
+            if(playerController != null)
+            {
+                playerController.SetCanMove(isPlayerStopMove);
+            }
 
         }
 

@@ -16,7 +16,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     public DoorAction doorAction;
 
     /// <summary>
-    /// Door ?ㅻ툕?앺듃???대쫫 ?쒖떆
+    /// Door 이름
     /// </summary>
     /// <returns></returns>
     public string GetInteractPrompt()
@@ -25,7 +25,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     }
 
     /// <summary>
-    /// door????곹샇?묒슜
+    /// Door 상호작용
     /// </summary>
     public void OnInteract()
     {
@@ -54,13 +54,10 @@ public class DoorObejct : MonoBehaviour, IInteraction
         }
         // door open
         //임시
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
 
-        //doorAction.ToggleDoor();
-
-        //if (playerViCamera != null && aisleViCamera != null)
-        //{
-        //    CinemachineController.Instance.OnChangedCineMachinePriority(aisleViCamera.Name, playerViCamera.Name);
+        CinemachineController.Instance.OnChangedCineMachinePriority(aisleViCamera.Name, playerViCamera.Name, false);
+        Invoke("InvokeController", 5f);
 
         //    Invoke("InvokeController", 5f);
         //}
@@ -72,8 +69,9 @@ public class DoorObejct : MonoBehaviour, IInteraction
 
     private void InvokeController()
     {
-        CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, aisleViCamera.Name);
+        CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, aisleViCamera.Name, true);
         Debug.Log("인보크 작동");
+
         //aisleViCamera.gameObject.SetActive(false);
     }
 

@@ -8,7 +8,7 @@ public class EnemyAnimationCotroller : MonoBehaviour
 
     protected virtual void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
 }
