@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2368152053681746088}
   - component: {fileID: 520635209903703138}
   - component: {fileID: 2680498965658647246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fence_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1689560332340625165
@@ -29,9 +29,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2368152053681746088
 MeshFilter:
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -60,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d5d6f00e20d004d469a1563850f819f5, type: 2}
+  - {fileID: 2100000, guid: b4b71574215b9f44fa576ad11c22d1cc, type: 2}
   - {fileID: 2100000, guid: ef9fccedae2295f4f873e24b951fa4ae, type: 2}
   - {fileID: 2100000, guid: fc9dbb6ccad928243a4d9ae9f94d32b0, type: 2}
   m_StaticBatchInfo:
@@ -92,8 +94,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033751845384529335}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3, y: 2.6833336, z: 0.40000004}
   m_Center: {x: 0.000000059604645, y: 1.3416668, z: 0}
