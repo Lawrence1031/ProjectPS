@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,9 @@ public class PlayerController : MonoBehaviour
 
     private Camera _camera;
 
+    private PlayerConditions condition;
+
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+
         _camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
     }
