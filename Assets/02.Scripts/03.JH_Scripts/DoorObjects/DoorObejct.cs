@@ -11,6 +11,8 @@ public class DoorObejct : MonoBehaviour, IInteraction
 
     public DoorData DoorData;
 
+    public DoorAction doorAction;
+
     /// <summary>
     /// Door ?ㅻ툕?앺듃???대쫫 ?쒖떆
     /// </summary>
@@ -25,15 +27,20 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// </summary>
     public void OnInteract()
     {
+
         // door open
         //임시
-       gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 
-       CinemachineController.Instance.OnChangedCineMachinePriority(aisleViCamera.Name, playerViCamera.Name);
+        doorAction.ToggleDoor();
 
-       Invoke("InvokeController", 5f);
+        if (playerViCamera != null && aisleViCamera != null)
+        {
+            CinemachineController.Instance.OnChangedCineMachinePriority(aisleViCamera.Name, playerViCamera.Name);
 
-       // StartCoroutine(DealayCoroutineController());
+            Invoke("InvokeController", 5f);
+        }
+        // StartCoroutine(DealayCoroutineController());
 
     }
 
