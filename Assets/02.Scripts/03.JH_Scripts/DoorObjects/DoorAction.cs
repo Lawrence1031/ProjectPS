@@ -2,21 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
-public class DoorAction : MonoBehaviour
+public class DoorAction : MonoBehaviour, IInteraction
 {
     //Inventory playerInventory = Inventory.Instance;
-
+    public DoorData DoorData;
     public GameObject Door;
+    public ItemData KeyObj;
+
     public bool needKey = false;
-    private bool isOpen = true;
-    private Vector3 initialPosition;
-    private Vector3 targetPosition;
+    public bool isOpen = false;
+    private bool playerHasKey;
+
+    public Vector3 initialPosition;
+    public Vector3 targetPosition;
 
     private void Start()
     {
         initialPosition = transform.position;
         targetPosition = initialPosition + new Vector3(0, 2.5f, 0);
+    }
+    public string GetInteractPrompt()
+    {
+        return string.Format("{0}", DoorData.displayName);
+    }
+
+    public void OnInteract()
+    {
+        Debug.Log("상호작용 중");
+        if (needKey)
+        {
+            Debug.Log("열쇠가 필요합니다");
+            if (isOpen)
+            {
+                Debug.Log("문이 열려있습니다");
+                ToggleDoor();
+            }
+            else
+            {
+                Debug.Log("문이 닫혀있습니다");
+                if (Inventory.instance.HasItems(KeyObj) == true)
+                {
+                    OpenDoor();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("열쇠가 필요하지 않습니다");
+            ToggleDoor();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,13 +61,13 @@ public class DoorAction : MonoBehaviour
         {
             if (needKey)
             {
-                if (isOpen || PlayerHasKey())
+                if (isOpen)
                 {
                     ToggleDoor();
                 }
                 else
                 {
-                    Debug.Log("열쇠가 필요합니다");
+                    Debug.Log("문이 닫혀있습니다");
                 }
             }
             else
@@ -41,13 +77,16 @@ public class DoorAction : MonoBehaviour
         }
     }
 
-    private bool PlayerHasKey()
+public bool PlayerHasKey(ItemData item)
     {
-        //if (playerInventory != null)
-        //{
-        //    return playerInventory.HasKey();
-        //}
-        return false;
+        if (Inventory.instance.HasItems(item) == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 
@@ -58,12 +97,10 @@ public class DoorAction : MonoBehaviour
     {
         if (isOpen)
         {
-            Debug.Log("Door is Opened");
             transform.position = targetPosition;
         }
         else
         {
-            Debug.Log("Door is Closed");
             transform.position = initialPosition;
         }
 
@@ -77,6 +114,18 @@ public class DoorAction : MonoBehaviour
     /// </summary>
     public void OpenDoor()
     {
+        isOpen = true;
+        transform.position = targetPosition;
+    }
+
+    /// <summary>
+    /// 열쇠가 있을 때, 열쇠를 이용해서 문을 여는 함수입니다.
+    /// DoorAction.OpenDoor(사용할 아이템 이름)으로 문이 열리게 하면 됩니다.
+    /// </summary>
+    /// <param name="item"></param>
+    public void OpenDoorUseKey(ItemData item)
+    {
+        PlayerHasKey(item);
         isOpen = true;
         transform.position = targetPosition;
     }
