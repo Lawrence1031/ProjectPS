@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4033500a6a490b44a8c9d44a55e4715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 50
+  damagePerSecond: 200
   isTrap: 0
-  damageAmount: 100
-  damageDelay: 1
+  boardDamageAmount: 50
   isDropTrap: 0
   dropDamageAmount: 100
 --- !u!33 &7449126651119527628
