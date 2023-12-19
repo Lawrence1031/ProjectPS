@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public LayerMask grounLayerMask;
 
-    private Vector2 _curMovementInput;
+    public Vector2 _curMovementInput;
+
 
     // 조준점
     [Header("Look")]
@@ -37,17 +39,27 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
-    private Camera _camera;
+    public Camera _camera;
 
+    private PlayerConditions condition;
+
+    private SaveData saveData;
+    private Inventory inventory;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        saveData = GetComponent<SaveData>();
+        inventory = GetComponent<Inventory>();
     }
 
     private void Start()
     {
+
         _camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
+        saveData.LoadPlayerPosition();
+        //saveData.LoadInventory();
+        saveData.LoadPlayerCameraPosition();
     }
 
     private void FixedUpdate()
@@ -60,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(canLook)
+        if (canLook)
         {
             CameraLook();
         }
@@ -73,7 +85,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         // 앞으로 이동하면 inputaction에서 받아온 y를, 우측으로가면 inputaction에서 받아온 x축을 곱한다.
-        Vector3 dir = transform.forward * _curMovementInput.y + transform.right * _curMovementInput.x; 
+        Vector3 dir = transform.forward * _curMovementInput.y + transform.right * _curMovementInput.x;
         dir *= moveSpeed;
         dir.y = _rigidbody.velocity.y;
 
@@ -122,11 +134,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
         {
             _curMovementInput = context.ReadValue<Vector2>();
         }
-        else if(context.phase == InputActionPhase.Canceled)
+        else if (context.phase == InputActionPhase.Canceled)
         {
             _curMovementInput = Vector2.zero;
         }
@@ -139,9 +151,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started)
         {
-            if(IsGround())
+            if (IsGround())
             {
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
             }
@@ -163,9 +175,9 @@ public class PlayerController : MonoBehaviour
         };
 
         // 4중 하나라도 ground와 맞닿았다면
-        for(int i = 0; i < rays.Length; i++)
+        for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.1f, grounLayerMask)) 
+            if (Physics.Raycast(rays[i], 0.1f, grounLayerMask))
             {
                 Debug.Log("ray?");
                 isJump = true;
@@ -173,7 +185,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-       
+
         return false;
 
     }
@@ -183,11 +195,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-       Gizmos.color = Color.red;
-       Gizmos.DrawRay(transform.position + (transform.forward * 0.2f), Vector3.down);
-       Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f), Vector3.down);
-       Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
-       Gizmos.DrawRay(transform.position + (-transform.right * 0.2f), Vector3.down);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.right * 0.2f), Vector3.down);
     }
 
     public void ToggleCursor(bool toggle)

@@ -13,10 +13,8 @@ public class DoorButton : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Encounter");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Pressed E Key");
                 doorAction.ToggleDoor();
             }
         }
