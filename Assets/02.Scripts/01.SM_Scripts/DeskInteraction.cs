@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class DeskInteraction : MonoBehaviour, IInteraction
 {
-    // Desk에 KeyObj가 존재하고,
-    // Player가 ClueKey를 갖고 있으면
-    // Player가 Desk와 상호작용하면 ClueKey가 없어지고 KeyObj가 생성되게
-
     private bool deskHasKey = true;
     private bool playerHasClueKey;
 
+    public TextMeshProUGUI UIMessage;
+
     public ItemData itemData;
-    public ItemData ClueKeyObj;
-    public ItemData KeyObj;
+    public ItemData ClueKeyObj; // 필요한 키
+    public ItemData KeyObj; // 받을 수 있는 키
+
+    private void Start()
+    {
+        UIMessage.gameObject.SetActive(false);
+    }
 
     public string GetInteractPrompt()
     {
@@ -24,22 +28,40 @@ public class DeskInteraction : MonoBehaviour, IInteraction
 
     public void OnInteract()
     {
+        if (Inventory.instance.HasItems(ClueKeyObj) == true)
+        {
+            playerHasClueKey = true;
+        }
+
+        Debug.Log("deskHasKey : " + deskHasKey);
+        Debug.Log("playerHasClueKey : " + playerHasClueKey);
+
         if (deskHasKey && playerHasClueKey)
         {
+            Inventory.instance.RemoveItem(ClueKeyObj);
             Inventory.instance.AddItem(KeyObj);
-
-            // 인벤토리에서 ClueKeyObj를 제거하는 함수
-            //Inventory.instance.Destroy(ClueKeyObj);
+            deskHasKey = false;
         }
         else
         {
-            Debug.Log("Clue Key가 필요합니다");
+            OutputNeedText();
         }
     }
 
-    //private void CheckClueKey()
-    //{
-    //    // 특정 아이템을 갖고 있는지 확인하는 함수입니다.
-    //    Inventory.instance.HasItems(ClueKeyObj);
-    //}
+    /// <summary>
+    /// 특정 조건에 맞지 않는 경우에 어떤 것이 필요한지 보여주는 텍스트입니다.
+    /// </summary>
+    private void OutputNeedText()
+    {
+        UIMessage.text = string.Format("{0}", itemData.description);
+        //UIMessage.text = string.Format("{0}이/가 필요합니다.", itemData.displayName);
+        UIMessage.gameObject.SetActive(true);
+
+        Invoke("HideUIMessage", 3f);
+    }
+
+    private void HideUIMessage()
+    {
+        UIMessage.gameObject.SetActive(false);
+    }
 }

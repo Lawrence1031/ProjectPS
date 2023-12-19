@@ -8,5 +8,6 @@ public class DoorData : ScriptableObject
 {
     [Header("info")]
     public string displayName;
-
+    public bool needKey;
+    public string needKeyName;
 }

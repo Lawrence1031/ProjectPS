@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7053e1ab0a1a31b4f832e3075b702f08, type: 3}
-  m_Name: FirstRoomKeyDesk
+  m_Name: normalKey_item
   m_EditorClassIdentifier: 
-  displayName: "\uCC45\uC0C1"
-  description: "ClueKey\uAC00 \uC788\uB2E4\uBA74 \uC5F4\uC1E0\uB97C \uC5BB\uC744
-    \uC218 \uC788\uB2E4."
-  type: 1
+  displayName: "\uD3C9\uBC94\uD55C \uC5F4\uC1E0"
+  description: "\uD3C9\uBC94\uD55C \uC5F4\uC1E0\uC785\uB2C8\uB2E4"
+  type: 0
   icon: {fileID: 0}
   dropPrefab: {fileID: 0}
   IsRoomOpen: 0
