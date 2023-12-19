@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Door
+  - SavePoint
   layers:
   - Default
   - TransparentFX

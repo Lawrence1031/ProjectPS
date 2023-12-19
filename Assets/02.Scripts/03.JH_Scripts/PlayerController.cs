@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 
 /// <summary>
 /// 플레이어의 컨트롤러
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     public GameObject inventoryWindow;
+    public GameObject pauseWindow;
 
     [HideInInspector]
     public bool canLook = true;
@@ -42,13 +43,14 @@ public class PlayerController : MonoBehaviour
 
     private PlayerConditions condition;
 
+    public Button continueButton;
+    public Button quitButton;
+
     private SaveData saveData;
-    private Inventory inventory;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         saveData = GetComponent<SaveData>();
-        inventory = GetComponent<Inventory>();
     }
 
     private void Start()
@@ -57,8 +59,6 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         saveData.LoadPlayerPosition();
-        //saveData.LoadInventory();
-        saveData.LoadPlayerCameraPosition();
     }
 
     private void FixedUpdate()
@@ -78,6 +78,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape) && inventoryWindow.activeInHierarchy == false)
+        {
+            ToggleCursor(true);
+            Time.timeScale = 0.0f;
+            pauseWindow.SetActive(true);
+        }
+        Button btn = continueButton.GetComponent<Button>();
+        btn.onClick.AddListener(Continue);
+
+        Button qbtn = quitButton.GetComponent<Button>();
+        qbtn.onClick.AddListener(Quit);
+    }
     /// <summary>
     ///  움직일 때 필요한 값 할당
     /// </summary>
@@ -89,6 +103,19 @@ public class PlayerController : MonoBehaviour
         dir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = dir;
+    }
+
+    private void Continue()
+    {
+        Time.timeScale = 1.0f;
+        pauseWindow.SetActive(false);
+        ToggleCursor(false);
+    }
+
+    private void Quit()
+    {
+        Application.Quit();
+        Debug.Log("게임이 종료가 된거임!!! 유니티 에디터에선 안꺼지는 거임!!!");
     }
 
     /// <summary>
