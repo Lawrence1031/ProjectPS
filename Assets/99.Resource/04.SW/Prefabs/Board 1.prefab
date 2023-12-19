@@ -47,10 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4033500a6a490b44a8c9d44a55e4715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 30
+  damagePerSecond: 50
   isTrap: 1
   damageAmount: 100
   damageDelay: 1
+  isDropTrap: 0
+  dropDamageAmount: 100
 --- !u!33 &2710970260238771862
 MeshFilter:
   m_ObjectHideFlags: 0

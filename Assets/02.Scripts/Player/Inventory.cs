@@ -210,11 +210,25 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
-
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == item)
+            {
+                slots[i].item = null;
+            }
+        }
     }
 
-    public bool HasItems(ItemData item, int quantity)
+    public bool HasItems(ItemData item)
     {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == item)
+            {
+                return true;
+            }
+        }
+
         return false;
     }
 }

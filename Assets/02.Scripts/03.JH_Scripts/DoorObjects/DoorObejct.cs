@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class DoorObejct : MonoBehaviour, IInteraction
 {
@@ -10,9 +11,12 @@ public class DoorObejct : MonoBehaviour, IInteraction
     public CinemachineVirtualCamera aisleViCamera;
 
     public DoorData DoorData;
+    public ItemData KeyObj;
+
+    public DoorAction doorAction;
 
     /// <summary>
-    /// Door 오브젝트의 이름 표시
+    /// Door ?ㅻ툕?앺듃???대쫫 ?쒖떆
     /// </summary>
     /// <returns></returns>
     public string GetInteractPrompt()
@@ -21,19 +25,47 @@ public class DoorObejct : MonoBehaviour, IInteraction
     }
 
     /// <summary>
-    /// door와의 상호작용
+    /// door????곹샇?묒슜
     /// </summary>
     public void OnInteract()
     {
+        Debug.Log("상호작용 중");
+        if (doorAction.needKey)
+        {
+            Debug.Log("열쇠가 필요합니다");
+            if (doorAction.isOpen)
+            {
+                Debug.Log("문이 열려있습니다");
+                doorAction.ToggleDoor();
+            }
+            else
+            {
+                Debug.Log("문이 닫혀있습니다");
+                if (Inventory.instance.HasItems(KeyObj) == true)
+                {
+                    doorAction.OpenDoor();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("열쇠가 필요하지 않습니다");
+            doorAction.ToggleDoor();
+        }
         // door open
-        //�ӽ�
-       gameObject.SetActive(false);
+        //임시
+        //gameObject.SetActive(false);
 
-       CinemachineController.Instance.OnChangedCineMachinePriority(aisleViCamera.Name, playerViCamera.Name);
+        //doorAction.ToggleDoor();
 
-       Invoke("InvokeController", 5f);
+        //if (playerViCamera != null && aisleViCamera != null)
+        //{
+        //    CinemachineController.Instance.OnChangedCineMachinePriority(aisleViCamera.Name, playerViCamera.Name);
 
-       // StartCoroutine(DealayCoroutineController());
+        //    Invoke("InvokeController", 5f);
+        //}
+
+        // StartCoroutine(DealayCoroutineController());
 
     }
 
@@ -41,7 +73,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     private void InvokeController()
     {
         CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, aisleViCamera.Name);
-        Debug.Log("�κ�ũ �۵�");
+        Debug.Log("인보크 작동");
         //aisleViCamera.gameObject.SetActive(false);
     }
 
@@ -52,7 +84,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     //    aisleViCamera.gameObject.SetActive(false);
 
 
-    //    Debug.Log("���ƿ�");
+    //    Debug.Log("돌아와");
 
     //}
 

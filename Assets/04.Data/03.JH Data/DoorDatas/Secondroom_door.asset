@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Secondroom_door
   m_EditorClassIdentifier: 
   displayName: "\uB450\uBC88\uC9F8 \uBB38"
+  needKey: 1
+  needKeyName: "\uBC29 \uC5F4\uC1E0"
