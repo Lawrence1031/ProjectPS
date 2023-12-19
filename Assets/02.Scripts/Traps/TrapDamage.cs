@@ -8,8 +8,9 @@ public class TrapDamage : MonoBehaviour
     public int damagePerSecond = 30; // 초당 피해량
     [Header("BoardManager")]
     public bool isTrap = false;      // 이 발판이 함정인지 여부를 결정하는 플래그
-    public int damageAmount = 100;   // 플레이어에게 입힐 피해량
-    public float damageDelay = 1.0f; // 피해를 입히는데까지 걸리는 시간
+    [Header("DropManager")]
+    public bool isDropTrap = false; // 드랍 함정인지 여부를 결정하는 플래그
+    public int dropDamageAmount = 100; // 드랍 함정의 피해량
 
     private PlayerConditions targetPlayerConditions; // 플레이어 조건 참조를 저장하기 위한 변수
 
@@ -29,17 +30,25 @@ public class TrapDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 플레이어가 BoardManager 함정 발판과 충돌할 때 처리
-        if (collision.gameObject.CompareTag("Player") && isTrap)
+        // 플레이어 테그와 충돌시 처리
+        if (collision.gameObject.CompareTag("Player"))
         {
             targetPlayerConditions = collision.gameObject.GetComponent<PlayerConditions>();
             if (targetPlayerConditions != null)
             {
-                // 발판을 비활성화하고 지연 피해 적용
-                gameObject.SetActive(false);
-                targetPlayerConditions.DelayedDamage(damageAmount, damageDelay);
+                if (isTrap)
+                {
+                    gameObject.SetActive(false);
+                    isTrap = false; // 함정을 비활성화하여 중복 피해를 방지
+                }
+
+                if (isDropTrap)
+                {
+                    // 드랍 함정의 피해 적용 후 파괴
+                    targetPlayerConditions.TakePhysicalDamage(dropDamageAmount);
+                    Destroy(gameObject); // 드랍 함정 오브젝트 파괴
+                }
             }
-            isTrap = false; // 함정을 비활성화하여 중복 피해를 방지
         }
     }
 }
