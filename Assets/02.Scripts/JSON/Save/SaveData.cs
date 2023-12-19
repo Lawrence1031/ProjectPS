@@ -64,113 +64,62 @@ public class SaveData : MonoBehaviour
     //}
 
     //플레이어 위치 저장위치
-    private string savePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerData.json";
 
-    //플레이어 카메라 저장 위치
-    private string cameraSavePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerCameraData.json";
 
-    //인벤토리 저장 위치
-    private string InventorySavePath = "Assets/02.Scripts/JSON/PlayerSaveData/inventoryData.json";
+    //public Inventory inventory;
 
-    public Inventory inventory;
-    public PlayerController controller;
-    public GameObject container;
-    private void Awake()
-    {
-        inventory = GetComponent<Inventory>();
-    }
+    //public GameObject container;
+    //private void Awake()
+    //{
+    //    inventory = GetComponent<Inventory>();
+    //}
 
-    [System.Serializable]
-    private class PlayerCameraPositionData
-    {
-        public float x;
-        public float y;
-        public float z;
-        public float w;
-    }
-    public void SavePlayerCameraPosition()
-    {
-        Quaternion playerCameraPosition = container.transform.rotation;
+    //[System.Serializable]
+    //private class PlayerCameraPositionData
+    //{
+    //    public float x;
+    //    public float y;
+    //    public float z;
+    //    public float w;
+    //}
+    //public void SavePlayerCameraPosition()
+    //{
+    //    Quaternion playerCameraPosition = container.transform.rotation;
 
-        PlayerCameraPositionData cameraPositionData = new PlayerCameraPositionData
-        {
-            x = playerCameraPosition.x,
-            y = playerCameraPosition.y,
-            z = playerCameraPosition.z,
-            w = playerCameraPosition.w
-        };
+    //    PlayerCameraPositionData cameraPositionData = new PlayerCameraPositionData
+    //    {
+    //        x = playerCameraPosition.x,
+    //        y = playerCameraPosition.y,
+    //        z = playerCameraPosition.z,
+    //        w = playerCameraPosition.w
+    //    };
 
-        string json = JsonUtility.ToJson(cameraPositionData);
-        File.WriteAllText(cameraSavePath, json);
+    //    string json = JsonUtility.ToJson(cameraPositionData);
+    //    File.WriteAllText(cameraSavePath, json);
 
-        Debug.Log("카메라 저장위치" + playerCameraPosition);
-    }
-    public void LoadPlayerCameraPosition()
-    {
-        if (File.Exists(cameraSavePath))
-        {
-            string json = File.ReadAllText(cameraSavePath);
-            PlayerCameraPositionData positionCameraData = JsonUtility.FromJson<PlayerCameraPositionData>(json);
+    //    Debug.Log("카메라 저장위치" + playerCameraPosition);
+    //}
+    //public void LoadPlayerCameraPosition()
+    //{
+    //    if (File.Exists(cameraSavePath))
+    //    {
+    //        string json = File.ReadAllText(cameraSavePath);
+    //        PlayerCameraPositionData positionCameraData = JsonUtility.FromJson<PlayerCameraPositionData>(json);
 
-            container.transform.rotation = new Quaternion(positionCameraData.x, positionCameraData.y, positionCameraData.z, positionCameraData.w);
+    //        container.transform.rotation = new Quaternion(positionCameraData.x, positionCameraData.y, positionCameraData.z, positionCameraData.w);
 
-            Debug.Log("카메라 불러온 위치" +
-            positionCameraData.x +
-            positionCameraData.y +
-            positionCameraData.z +
-            positionCameraData.w);
-        }
-        else
-        {
-            Debug.Log("저장 된 거 없음");
-        }
-    }
+    //        Debug.Log("카메라 불러온 위치" +
+    //        positionCameraData.x +
+    //        positionCameraData.y +
+    //        positionCameraData.z +
+    //        positionCameraData.w);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("저장 된 거 없음");
+    //    }
+    //}
 
-    [System.Serializable]
-    private class PlayerPositionData
-    {
-        public float x;
-        public float y;
-        public float z;
-    }
-
-    [ContextMenu("To Json Data")]
-    private void SavePlayerPosition()
-    {
-        Vector3 playerPosition = controller.transform.position;
-
-        PlayerPositionData positionData = new PlayerPositionData
-        {
-            x = playerPosition.x,
-            y = playerPosition.y,
-            z = playerPosition.z
-        };
-
-        string json = JsonUtility.ToJson(positionData);
-        File.WriteAllText(savePath, json);
-
-        Debug.Log("저장위치" + playerPosition);
-    }
-
-    [ContextMenu("From Json Data")]
-    // 추가로 로드할 때 사용할 메서드
-    public void LoadPlayerPosition()
-    {
-        if (File.Exists(savePath))
-        {
-            string json = File.ReadAllText(savePath);
-            PlayerPositionData positionData = JsonUtility.FromJson<PlayerPositionData>(json);
-
-            // 저장된 위치로 플레이어 이동
-            controller.transform.position = new Vector3(positionData.x, positionData.y, positionData.z);
-
-            Debug.Log("불러온 위치" + controller.transform.position);
-        }
-        else
-        {
-            Debug.Log("저장 된 거 없음");
-        }
-    }
 
 
     //[System.Serializable]
@@ -230,4 +179,67 @@ public class SaveData : MonoBehaviour
     //        Debug.Log("저장된 인벤토리 없음.");
     //    }
     //}
+
+    public GameObject thisButton;
+    public GameObject nextButton;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            thisButton.SetActive(false);
+            nextButton.SetActive(true);
+            SavePlayerPosition();
+        }
+    }
+
+    private string savePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerData.json";
+
+    public PlayerController controller;
+
+    [System.Serializable]
+    private class PlayerPositionData
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+
+    [ContextMenu("To Json Data")]
+    private void SavePlayerPosition()
+    {
+        Vector3 playerPosition = controller.transform.position;
+
+        PlayerPositionData positionData = new PlayerPositionData
+        {
+            x = playerPosition.x,
+            y = playerPosition.y,
+            z = playerPosition.z
+        };
+
+        string json = JsonUtility.ToJson(positionData);
+        File.WriteAllText(savePath, json);
+
+        Debug.Log("저장위치" + playerPosition);
+    }
+
+    [ContextMenu("From Json Data")]
+    // 추가로 로드할 때 사용할 메서드
+    public void LoadPlayerPosition()
+    {
+        if (File.Exists(savePath))
+        {
+            string json = File.ReadAllText(savePath);
+            PlayerPositionData positionData = JsonUtility.FromJson<PlayerPositionData>(json);
+
+            // 저장된 위치로 플레이어 이동
+            controller.transform.position = new Vector3(positionData.x, positionData.y, positionData.z);
+
+            Debug.Log("불러온 위치" + controller.transform.position);
+        }
+        else
+        {
+            Debug.Log("저장 된 거 없음");
+        }
+    }
 }
