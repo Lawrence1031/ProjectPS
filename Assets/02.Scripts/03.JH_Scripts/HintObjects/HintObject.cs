@@ -28,10 +28,8 @@ public class HintObject : MonoBehaviour, IInteraction
     /// </summary>
     public void OnInteract()
     {
-        //�ó׸ӽ� ī�޶� ȣ�� 
-        CinemachineController.Instance.OnChangedCineMachinePriority(hintObjViCamera.Name, playerViCamera.Name);
+        CinemachineController.Instance.OnChangedCineMachinePriority(hintObjViCamera.Name, playerViCamera.Name, false);
 
-        // ī�޶��� �켱������ ���δ�.
         //hintObjViCamera.MoveToTopOfPrioritySubqueue();
         //hintObjViCamera.Priority = 11;
         //playerViCamera.Priority = 10;
@@ -40,7 +38,6 @@ public class HintObject : MonoBehaviour, IInteraction
 
         //if (cameraController != null)
         //{
-        //    Debug.Log("ȣ��2");
         //    cameraController.ActivateCamera(_changeCamera);
 
         //}
@@ -49,7 +46,7 @@ public class HintObject : MonoBehaviour, IInteraction
     public void NonInteract()
     {
 
-        CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, hintObjViCamera.Name);
+        CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, hintObjViCamera.Name, true);
 
         //Debug.Log("????????");
 
@@ -62,7 +59,6 @@ public class HintObject : MonoBehaviour, IInteraction
 
         //if (cameraController != null)
         //{
-        //    Debug.Log("ȣ��3");
         //    cameraController.ActivateCamera(_playerCamera);
 
         //}

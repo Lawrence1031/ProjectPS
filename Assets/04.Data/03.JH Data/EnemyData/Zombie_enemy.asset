@@ -16,4 +16,6 @@ MonoBehaviour:
   enemyDesciption: "\uC5B4\uC9F8\uC11C\uC778\uC9C0 \uB098\uD0C0\uB09C \uC89C\uBE44"
   enemyType: 0
   target: 0
-  Speed: 10
+  damage: 0
+  walkSpeed: 2
+  runSpeed: 4

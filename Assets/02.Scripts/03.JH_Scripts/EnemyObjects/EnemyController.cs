@@ -32,7 +32,7 @@ public class EnemyController : EnemyAnimationCotroller
     {
         animator.SetBool(isWalking, true);
 
-        float moveSpeed = enemyData.Speed;
+        float moveSpeed = enemyData.walkSpeed;
 
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
@@ -61,13 +61,13 @@ public class EnemyController : EnemyAnimationCotroller
     {
         yield return new WaitForSecondsRealtime(3f);
 
-        /// °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ rotation °ª
+        /// ê²Œì„ ì˜¤ë¸Œì íŠ¸ì˜ rotation ê°’
         Vector3 currentRotation = gameObject.transform.rotation.eulerAngles;
 
         /// 
         Vector3 targetRotation = new Vector3(currentRotation.x, currentRotation.y, currentRotation.z);
 
-        /// È¸Àü ±¸Çö
+        /// íšŒì „ êµ¬í˜„
         if (currentRotation.y == 90f)
         {
              targetRotation = new Vector3(currentRotation.x, 270f, currentRotation.z);
@@ -81,7 +81,7 @@ public class EnemyController : EnemyAnimationCotroller
         while (time < 1f)
         {
             animator.SetBool(isWalking, false);
-            time += Time.deltaTime / 2f; // 2ÃÊ µ¿¾È º¸°£
+            time += Time.deltaTime / 2f; // 2ì´ˆ ë™ì•ˆ ë³´ê°„
             gameObject.transform.rotation = Quaternion.Euler(Vector3.Lerp(currentRotation, targetRotation, time));
             yield return null;
         }

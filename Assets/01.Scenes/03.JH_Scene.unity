@@ -921,6 +921,7 @@ MonoBehaviour:
   lookSensitivity: 0.2
   inventoryWindow: {fileID: 147674583}
   canLook: 1
+  canMove: 1
   isJump: 0
 --- !u!114 &185489552
 MonoBehaviour:
@@ -970,6 +971,7 @@ MonoBehaviour:
   - {fileID: 1008103540}
   - {fileID: 642269275}
   - {fileID: 1861038301}
+  playerController: {fileID: 0}
 --- !u!114 &185489555
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Àû Å¸ÀÔ
+/// ì  íƒ€ì…
 /// </summary>
 public enum EnemyType
 {
@@ -23,6 +23,8 @@ public class EnemyData : ScriptableObject
     public string enemyDesciption;
     public EnemyType enemyType;
     public Target target;
-    public float Speed;
+    public float damage;
+    public float walkSpeed;
+    public float runSpeed;
 
 }

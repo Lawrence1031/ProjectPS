@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1600581298907894183}
   - component: {fileID: 5343038955579097585}
   - component: {fileID: 2668492873418473871}
+  - component: {fileID: -1701431392108171190}
   m_Layer: 0
   m_Name: Hint
   m_TagString: Untagged
@@ -122,3 +123,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &-1701431392108171190
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600452525208983262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
