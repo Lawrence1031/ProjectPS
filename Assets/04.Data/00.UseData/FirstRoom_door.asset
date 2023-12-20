@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: FirstRoom_door
   m_EditorClassIdentifier: 
   displayName: "\uAD50\uC2E4 \uBB38"
-  needKey: 0
-  needKeyName: "\uC7A0\uACA8\uC788\uB2E4"
+  discription: "\uAD73\uAC8C \uC7A0\uACA8 \uC788\uB2E4. \uC5F4\uC1E0\uAC00 \uD544\uC694\uD55C
+    \uAC83 \uAC19\uB2E4."
+  needKeyName: "\uAD50\uC2E4 \uC5F4\uC1E0\uAC00 \uD544\uC694\uD55C \uAC83 \uAC19\uB2E4."
+  needKey: 1

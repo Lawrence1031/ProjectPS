@@ -39,8 +39,8 @@ public class DeskInteraction : MonoBehaviour, IInteraction
             playerHasClueKey = true;
         }
 
-        Debug.Log("deskHasKey : " + deskHasKey);
-        Debug.Log("playerHasClueKey : " + playerHasClueKey);
+        //Debug.Log("deskHasKey : " + deskHasKey);
+        //Debug.Log("playerHasClueKey : " + playerHasClueKey);
 
         if (deskHasKey && playerHasClueKey)
         {
