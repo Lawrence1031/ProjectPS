@@ -43,8 +43,7 @@ public class InteractionManager : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-                if (hit.collider.gameObject.CompareTag("Item"))
-                {
+
                     if (_camera.gameObject.activeSelf == false)
                     {
                         UnSetPromptText();
@@ -57,8 +56,7 @@ public class InteractionManager : MonoBehaviour
                         curInteraction = hit.collider.GetComponent<IInteraction>();
                         SetPromptText();
                         /// 여기까지가 레이를 쏘고 바라본 정도까지임 아래는 오브젝트들 마다 interaction이 달라야함
-                    }
-                }               
+                    }              
             }
             else
             {
