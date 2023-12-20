@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1712186757}
-  enemyData: {fileID: 11400000, guid: 46f599c7eb6e0454b811df62e3ec9efa, type: 2}
+  enemyData: {fileID: 11400000, guid: 50d8d43205dc68141960036151868897, type: 2}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -23821,7 +23821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1712186757}
-  enemyData: {fileID: 11400000, guid: 39ae26aa755869348827773df3567ce4, type: 2}
+  enemyData: {fileID: 11400000, guid: fae02cf7ff276fe4982afc05e135e6e4, type: 2}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -35114,7 +35114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardManager: {fileID: 1943406975}
   hintPrefab: {fileID: 1600452525208983262, guid: b0461b9aa72f7604fa6cdf78e7544405, type: 3}
-  switchObject: {fileID: 0}
 --- !u!1001 &1502924980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46053,6 +46052,7 @@ MonoBehaviour:
   trapPrefab: {fileID: 5404268638827184490, guid: d9293214f179f984880aa8ff1798dec5, type: 3}
   boardSize: 6
   spacing: 3
+  boardSizeFactor: 0
 --- !u!1001 &1946120565
 PrefabInstance:
   m_ObjectHideFlags: 0
