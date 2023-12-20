@@ -13,7 +13,6 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] soundEffects;
     public AudioClip bgmClip;
 
-    [HideInInspector] public AudioSource startSource;
     [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public AudioSource bgmAudioSource;
     [HideInInspector] public AudioSource outroAudioSource;
@@ -32,7 +31,6 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        startSource = gameObject.AddComponent<AudioSource>();
         audioSource = gameObject.AddComponent<AudioSource>();
         bgmAudioSource = gameObject.AddComponent<AudioSource>();
         outroAudioSource = gameObject.AddComponent<AudioSource>();
@@ -42,8 +40,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        startSource.PlayOneShot(soundEffects[0], BGMVolume);
-        Invoke("PlayBGM", soundEffects[0].length);
+        PlayBGM();
     }
 
     public void PlayBGM()
@@ -58,32 +55,32 @@ public class SoundManager : MonoBehaviour
     {
         if (!audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(soundEffects[1], EffectVolume);
+            audioSource.PlayOneShot(soundEffects[0], EffectVolume);
         }
     }
 
     public void PlayDoorLockEffect()
     {
-        audioSource.PlayOneShot(soundEffects[2], DoorVolume);
+        audioSource.PlayOneShot(soundEffects[1], DoorVolume);
     }
 
     public void PlayDoorOpenEffect()
     {
-        audioSource.PlayOneShot(soundEffects[3], DoorVolume);
+        audioSource.PlayOneShot(soundEffects[2], DoorVolume);
     }
 
 
     public void PlayDoorErrorEffect()
     {
-        audioSource.PlayOneShot(soundEffects[4], DoorVolume);
+        audioSource.PlayOneShot(soundEffects[3], DoorVolume);
     }
     public void PlaytrapEffect()
     {
-        trapAudioSource.PlayOneShot(soundEffects[5], EffectVolume);
+        trapAudioSource.PlayOneShot(soundEffects[4], EffectVolume);
     }
 
     public void PlayOutroEffect()
     {
-        outroAudioSource.PlayOneShot(soundEffects[6], BGMVolume);
+        outroAudioSource.PlayOneShot(soundEffects[5], BGMVolume);
     }
 }

@@ -1907,7 +1907,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 219674628}
+    - targetCorrespondingSourceObject: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 219674629}
   m_SourcePrefab: {fileID: 100100000, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
 --- !u!4 &198861796 stripped
 Transform:
@@ -2198,6 +2204,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217461955}
   m_CullTransparentMesh: 1
+--- !u!1 &219674625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
+  m_PrefabInstance: {fileID: 198861795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &219674628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219674625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0d90f4ee89799488adea58495215dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerViCamera: {fileID: 0}
+  aisleViCamera: {fileID: 0}
+  DoorData: {fileID: 11400000, guid: e0d01742c94187842ba7e5930410c547, type: 2}
+  Door: {fileID: 219674625}
+  KeyObj: {fileID: 0}
+  needKey: 0
+  isOpen: 0
+--- !u!65 &219674629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219674625}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8000004, y: 2, z: 0.05037025}
+  m_Center: {x: 0.40000403, y: 1, z: 0.024881987}
 --- !u!1 &220090247
 GameObject:
   m_ObjectHideFlags: 0
@@ -5381,7 +5432,6 @@ MonoBehaviour:
   EffectVolume: 0.6
   DoorVolume: 0.4
   soundEffects:
-  - {fileID: 8300000, guid: 675b5692cdb642a4287ff58e9425a435, type: 3}
   - {fileID: 8300000, guid: 0a26aa2f99c2be943a0023d491893f11, type: 3}
   - {fileID: 8300000, guid: 832b9b230ae283b4e954d55c974c1b87, type: 3}
   - {fileID: 8300000, guid: a9a81e60df6f76942ba1e795bf934849, type: 3}
@@ -5389,7 +5439,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c4467ec73a3a85740a0695fef88fc43b, type: 3}
   - {fileID: 8300000, guid: 2e95856c7c68cff45adffe3239a17dde, type: 3}
   bgmClip: {fileID: 8300000, guid: ff0213f6c6a3e884a8da7a3ca8d684b6, type: 3}
-  startSource: {fileID: 0}
   audioSource: {fileID: 0}
   bgmAudioSource: {fileID: 0}
   outroAudioSource: {fileID: 0}
@@ -5945,7 +5994,7 @@ MonoBehaviour:
   DoorData: {fileID: 11400000, guid: 268e6808d7cede34a9c78026fa476236, type: 2}
   Door: {fileID: 614504497}
   KeyObj: {fileID: 0}
-  needKey: 1
+  needKey: 0
   isOpen: 0
 --- !u!65 &614504503
 BoxCollider:

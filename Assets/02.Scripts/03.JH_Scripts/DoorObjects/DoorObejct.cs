@@ -17,7 +17,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
 
     public bool needKey = false;
     public bool isOpen = false;
-    private bool playerHasKey;
+    private bool playerHasKey = false;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
@@ -43,6 +43,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     {
         if (needKey)
         {
+            Debug.Log(playerHasKey);
             if (isOpen)
             {
                 SoundManager.instance.PlayDoorOpenEffect();
@@ -50,16 +51,15 @@ public class DoorObejct : MonoBehaviour, IInteraction
             }
             else
             {
-                SoundManager.instance.PlayDoorLockEffect();
-                //if (PlayerHasKey(KeyObj))
-                //{
-                //    SoundManager.instance.PlayDoorOpenEffect();
-                //    ToggleDoor();
-                //}
-                //else
-                //{
-                //    SoundManager.instance.PlayDoorLockEffect();
-                //}
+                if (playerHasKey)
+                {
+                    SoundManager.instance.PlayDoorOpenEffect();
+                    ToggleDoor();
+                }
+                else
+                {
+                    SoundManager.instance.PlayDoorLockEffect();
+                }
             }
         }
         else
