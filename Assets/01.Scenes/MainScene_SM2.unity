@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: a7d78e7a9f15c9146a1558c7bc76f633, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 642987457aaa4b74aa6cfcf6880a576e, type: 2}
 --- !u!1001 &4309207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -287,14 +287,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695ac99e9bfad6a4389be7b5c3487cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemyData: {fileID: 11400000, guid: 50d8d43205dc68141960036151868897, type: 2}
+  player: {fileID: 953610801}
+  enemyData: {fileID: 11400000, guid: 0c23898ec2d766e4ea590fe2f885d124, type: 2}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  detectDistance: 5
+  detectDistance: 7
   safeDistance: 9
-  minWanderDistance: 5
+  minWanderDistance: 7
   maxWanderDistance: 10
   minWanderWaitTime: 1
   maxWanderWaitTime: 2
@@ -1940,8 +1940,16 @@ PrefabInstance:
       value: Door_A (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2030997872579624074, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
       propertyPath: m_RootOrder
@@ -10245,14 +10253,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695ac99e9bfad6a4389be7b5c3487cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  enemyData: {fileID: 11400000, guid: fae02cf7ff276fe4982afc05e135e6e4, type: 2}
+  player: {fileID: 953610801}
+  enemyData: {fileID: 11400000, guid: 0c23898ec2d766e4ea590fe2f885d124, type: 2}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  detectDistance: 5
+  detectDistance: 7
   safeDistance: 9
-  minWanderDistance: 5
+  minWanderDistance: 7
   maxWanderDistance: 10
   minWanderWaitTime: 1
   maxWanderWaitTime: 2
@@ -15398,14 +15406,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695ac99e9bfad6a4389be7b5c3487cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 953610801}
   enemyData: {fileID: 11400000, guid: 0c23898ec2d766e4ea590fe2f885d124, type: 2}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  detectDistance: 5
+  detectDistance: 7
   safeDistance: 9
-  minWanderDistance: 5
+  minWanderDistance: 7
   maxWanderDistance: 10
   minWanderWaitTime: 1
   maxWanderWaitTime: 2
