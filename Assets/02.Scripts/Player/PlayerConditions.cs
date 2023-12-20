@@ -76,13 +76,13 @@ public class PlayerConditions : MonoBehaviour, IDamagable
             timeSinceLastGrounded = 0;
         }
 
-        // 낙사 피해 검사
-        if (timeSinceLastGrounded > FallDamageThreshold)
-        {
-            // 경과 시간이 낙사 임계값을 초과한 경우, 낙사 피해 적용
-            TakePhysicalDamage(fallDamage);
-            timeSinceLastGrounded = 0; // 피해를 입힌 후 경과 시간을 초기화
-        }
+        //// 낙사 피해 검사
+        //if (timeSinceLastGrounded > FallDamageThreshold)
+        //{
+        //    // 경과 시간이 낙사 임계값을 초과한 경우, 낙사 피해 적용
+        //    TakePhysicalDamage(fallDamage);
+        //    timeSinceLastGrounded = 0; // 피해를 입힌 후 경과 시간을 초기화
+        //}
 
         if (health.curValue <= 0.0f && !isDead)
         {
