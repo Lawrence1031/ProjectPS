@@ -199,11 +199,13 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            SoundManager.instance.PlayWalkEffect();
             _moveAnimator.SetBool("IsWalk", true);
             _curMovementInput = context.ReadValue<Vector2>();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
+            SoundManager.instance.audioSource.Stop();
             _moveAnimator.SetBool("IsWalk", false);
             _curMovementInput = Vector2.zero;
         }

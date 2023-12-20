@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using System;
 using Unity.VisualScripting.Antlr3.Runtime;
+using static UnityEditor.Progress;
 
 public class DoorObejct : MonoBehaviour, IInteraction
 {
@@ -40,29 +41,39 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// </summary>
     public void OnInteract()
     {
-        Debug.Log("상호작용");
-        Debug.Log("initialRotation : " + initialRotation);
-        Debug.Log("targetRotation : " + targetRotation);
         if (needKey)
         {
             if (isOpen)
             {
-                Debug.Log("열쇠가 필요한 열린 문");
+                SoundManager.instance.PlayDoorOpenEffect();
                 ToggleDoor();
             }
             else
             {
-                Debug.Log("열쇠가 필요한 닫힌 문");
-                if (Inventory.instance.HasItems(KeyObj) == true)
-                {
-                    OpenDoor();
-                }
+                SoundManager.instance.PlayDoorLockEffect();
+                //if (PlayerHasKey(KeyObj))
+                //{
+                //    SoundManager.instance.PlayDoorOpenEffect();
+                //    ToggleDoor();
+                //}
+                //else
+                //{
+                //    SoundManager.instance.PlayDoorLockEffect();
+                //}
             }
         }
         else
         {
-            Debug.Log("열린 문");
-            ToggleDoor();
+            if (!isOpen)
+            {
+                OpenDoor();
+                SoundManager.instance.PlayDoorOpenEffect();
+            }
+            else
+            {
+                SoundManager.instance.PlayDoorOpenEffect();
+                ToggleDoor();
+            }
         }
 
         if (aisleViCamera != null && playerViCamera != null)
@@ -100,7 +111,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
 
     public bool PlayerHasKey(ItemData item)
     {
-        if (Inventory.instance.HasItems(item) == true)
+        if (Inventory.instance.HasItems(item))
         {
             return true;
         }
@@ -116,12 +127,14 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// </summary>
     public void ToggleDoor()
     {
-        if (isOpen)
+        if (!isOpen)
         {
+            SoundManager.instance.PlayDoorOpenEffect();
             transform.rotation = targetRotation;
         }
         else
         {
+            SoundManager.instance.PlayDoorOpenEffect();
             transform.rotation = initialRotation;
         }
 
@@ -137,6 +150,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     {
         isOpen = true;
         transform.rotation = targetRotation;
+        SoundManager.instance.PlayDoorOpenEffect();
     }
 
     /// <summary>
@@ -149,6 +163,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
         PlayerHasKey(item);
         isOpen = true;
         transform.rotation = targetRotation;
+        SoundManager.instance.PlayDoorOpenEffect();
     }
 
 }
