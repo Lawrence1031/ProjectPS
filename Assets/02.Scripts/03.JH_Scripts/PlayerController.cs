@@ -248,7 +248,6 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(rays[i], 0.1f, grounLayerMask))
             {
-                //Debug.Log("ray?");
                 isJump = true;
                 return true;
             }

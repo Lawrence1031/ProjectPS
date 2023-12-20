@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractionManager : MonoBehaviour
+public class ShowHintManager : MonoBehaviour
 {
     public float checkRate = 0.05f;
     private float lastCheckTime;
@@ -13,19 +14,16 @@ public class InteractionManager : MonoBehaviour
 
     private GameObject curInteractGameObject;
     private IInteraction curInteraction;
-    
+
     [SerializeField] private HintObject hintObject;
 
-    public TextMeshProUGUI promptText;
+    public TextMeshProUGUI hintText;
 
     private Camera _camera;
-
-    private PlayerController _playerController;
 
     private void Start()
     {
         _camera = Camera.main;
-        _playerController = GetComponent<PlayerController>();
     }
 
     /// <summary>
@@ -41,10 +39,12 @@ public class InteractionManager : MonoBehaviour
             Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-                if (hit.collider.gameObject.CompareTag("Item"))
+                if (hit.collider.gameObject.CompareTag("Door") && DoorObejct.instance.isOpen == false)
                 {
+                    OpenDoor();
+
                     if (_camera.gameObject.activeSelf == false)
                     {
                         UnSetPromptText();
@@ -58,20 +58,28 @@ public class InteractionManager : MonoBehaviour
                         SetPromptText();
                         /// 여기까지가 레이를 쏘고 바라본 정도까지임 아래는 오브젝트들 마다 interaction이 달라야함
                     }
-                }               
+                }
             }
             else
             {
                 if (_camera.gameObject.activeSelf == false)
                 {
-                    promptText.gameObject.SetActive(false);
+                    hintText.gameObject.SetActive(false);
                 }
 
                 ///평시에 null
                 curInteractGameObject = null;
                 curInteraction = null;
-                promptText.gameObject.SetActive(false);
+                hintText.gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OpenDoor()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            DoorObejct.instance.OnInteract();
         }
     }
 
@@ -80,14 +88,14 @@ public class InteractionManager : MonoBehaviour
     /// </summary>
     private void SetPromptText()
     {
-        promptText.gameObject.SetActive(true);
-        promptText.text = string.Format("<b>[E]</b> {0}", curInteraction.GetInteractPrompt());
+        hintText.gameObject.SetActive(true);
+        hintText.text = string.Format("{0}", curInteraction.GetInteractPrompt());
     }
 
     private void UnSetPromptText()
     {
-        promptText.gameObject.SetActive(false);
-        promptText.text = string.Empty;
+        hintText.gameObject.SetActive(false);
+        hintText.text = string.Empty;
     }
 
     /// <summary>
@@ -101,7 +109,7 @@ public class InteractionManager : MonoBehaviour
             curInteraction.OnInteract();
             curInteractGameObject = null;
             curInteraction = null;
-            promptText.gameObject.SetActive(false);
+            hintText.gameObject.SetActive(false);
         }
     }
 
@@ -109,11 +117,10 @@ public class InteractionManager : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            Debug.Log("??!?!?!" + hintObject);
             hintObject.NonInteract();
             curInteractGameObject = null;
             curInteraction = null;
-            promptText.gameObject.SetActive(false);
+            hintText.gameObject.SetActive(false);
         }
     }
 

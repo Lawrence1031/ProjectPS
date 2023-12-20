@@ -180,25 +180,25 @@ public class SaveData : MonoBehaviour
     //    }
     //}
 
-    public GameObject thisButton;
-    public GameObject nextButton;
+    public GameObject thisButton; //이번 체크포인트
+    public GameObject nextButton; //다음 체크 포인트
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player") //플레이어랑 붙딛히면 
         {
-            thisButton.SetActive(false);
-            nextButton.SetActive(true);
-            SavePlayerPosition();
+            thisButton.SetActive(false); //이번 체크포인트 끄고
+            nextButton.SetActive(true);  //다음 체크포인트 키기
+            SavePlayerPosition();        //플레이어 위치 저장
         }
     }
 
-    private string savePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerData.json";
+    private string savePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerData.json";//저장경로
 
     public PlayerController controller;
 
     [System.Serializable]
-    private class PlayerPositionData
+    private class PlayerPositionData //플레이어 좌표값
     {
         public float x;
         public float y;
@@ -208,7 +208,7 @@ public class SaveData : MonoBehaviour
     [ContextMenu("To Json Data")]
     private void SavePlayerPosition()
     {
-        Vector3 playerPosition = controller.transform.position;
+        Vector3 playerPosition = controller.transform.position; //좌표값 받아오기
 
         PlayerPositionData positionData = new PlayerPositionData
         {
@@ -225,7 +225,7 @@ public class SaveData : MonoBehaviour
 
     [ContextMenu("From Json Data")]
     // 추가로 로드할 때 사용할 메서드
-    public void LoadPlayerPosition()
+    public void LoadPlayerPosition()//저장된 세이브 불러오기
     {
         if (File.Exists(savePath))
         {
