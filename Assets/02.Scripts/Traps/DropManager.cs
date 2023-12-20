@@ -22,6 +22,13 @@ public class DropManager : MonoBehaviour
             // Quaternion.identity는 회전을 적용하지 않음을 나타냄.
             Instantiate(dropPrefab, dropPrefab.transform.position, Quaternion.identity);
         }
+        else if(other.CompareTag("Cube"))
+        {
+            Debug.Log("함정 발동");
+            Instantiate(dropPrefab, dropPrefab.transform.position, Quaternion.identity);
+        }
+
+
     }
 }
 
