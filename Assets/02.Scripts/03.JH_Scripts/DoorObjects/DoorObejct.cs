@@ -22,10 +22,18 @@ public class DoorObejct : MonoBehaviour, IInteraction
     private Quaternion initialRotation;
     private Quaternion targetRotation;
 
+
+    public static DoorObejct instance;
     private void Start()
     {
         initialRotation = transform.rotation;
         targetRotation = initialRotation * Quaternion.Euler(0, 90, 0);
+    }
+
+
+    private void Awake()
+    {
+        instance = this;
     }
     /// <summary>
     /// Door 이름

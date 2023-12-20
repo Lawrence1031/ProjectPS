@@ -41,8 +41,10 @@ public class ShowHintManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-                if (hit.collider.gameObject.CompareTag("Door") && DoorAction.instanse.isOpen == false)
+                if (hit.collider.gameObject.CompareTag("Door") && DoorObejct.instance.isOpen == false)
                 {
+                    OpenDoor();
+
                     if (_camera.gameObject.activeSelf == false)
                     {
                         UnSetPromptText();
@@ -70,6 +72,14 @@ public class ShowHintManager : MonoBehaviour
                 curInteraction = null;
                 hintText.gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OpenDoor()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            DoorObejct.instance.OnInteract();
         }
     }
 
