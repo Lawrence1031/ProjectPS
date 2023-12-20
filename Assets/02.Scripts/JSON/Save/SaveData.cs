@@ -187,9 +187,14 @@ public class SaveData : MonoBehaviour
     {
         if(other.gameObject.tag == "Player") //플레이어랑 붙딛히면 
         {
+            SoundManager.instance.PlayInteractionEffect();
             thisButton.SetActive(false); //이번 체크포인트 끄고
-            nextButton.SetActive(true);  //다음 체크포인트 키기
             SavePlayerPosition();        //플레이어 위치 저장
+
+            if (nextButton != null)
+            {
+                nextButton.SetActive(true);  //다음 체크포인트 키기
+            }
         }
     }
 

@@ -70,7 +70,7 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void PlayDoorErrorEffect()
+    public void PlayInteractionEffect()
     {
         audioSource.PlayOneShot(soundEffects[3], DoorVolume);
     }

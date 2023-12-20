@@ -76,6 +76,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
                     Inventory.instance.RemoveItem(KeyObj);
                     SoundManager.instance.PlayDoorOpenEffect();
                     ToggleDoor();
+                    needKey = false;
                 }
                 else
                 {
