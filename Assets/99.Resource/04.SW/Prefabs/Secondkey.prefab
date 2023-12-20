@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6257313378839109486}
   - component: {fileID: 329215499225500631}
   - component: {fileID: 4041669502976170052}
-  m_Layer: 0
+  - component: {fileID: 1575012245725222960}
+  m_Layer: 8
   m_Name: Secondkey
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +135,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.54589844, y: 0.43652353, z: 0.20000005}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1575012245725222960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7757847539337326506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d7b559019ee4d43bd54127eb6ddb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 833910615f95e0c419c5fcaccb7e521e, type: 2}
+  doorData: {fileID: 11400000, guid: 23f28af5f6715b74aa46ae1dd1551bb0, type: 2}
