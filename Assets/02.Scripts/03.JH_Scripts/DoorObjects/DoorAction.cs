@@ -18,6 +18,13 @@ public class DoorAction : MonoBehaviour, IInteraction
     public Vector3 initialPosition;
     public Vector3 targetPosition;
 
+    public static DoorAction instanse;
+
+    private void Awake()
+    {
+        instanse = this;
+    }
+
     private void Start()
     {
         initialPosition = transform.position;

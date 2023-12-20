@@ -16,12 +16,15 @@ public class InteractManager : MonoBehaviour
     public float checkRate = 0.05f;
     private float lastChackTime;
     public float maxCheckDistance;
-    public LayerMask layerMask;
+    public LayerMask interacrtable;
+
 
     private GameObject curInteractGameObject;
     private IInteractable curInteractable;
 
     public TextMeshProUGUI promptText;
+    public TextMeshProUGUI hintText;
+    private float showTextTime = 1f;
     private Camera camera;
 
     void Start()
@@ -38,7 +41,7 @@ public class InteractManager : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (Physics.Raycast(ray, out hit, maxCheckDistance, interacrtable))
             {
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
@@ -65,12 +68,23 @@ public class InteractManager : MonoBehaviour
 
     public void OnInteractInput(InputAction.CallbackContext callbackContext)
     {
+
         if (callbackContext.phase == InputActionPhase.Started && curInteractable != null)
         {
-            curInteractable.OnInteract();
-            curInteractGameObject = null;
-            curInteractable = null;
-            promptText.gameObject.SetActive(false);
+            if (gameObject.tag == "Item")
+            {
+                curInteractable.OnInteract();
+                curInteractGameObject = null;
+                curInteractable = null;
+                promptText.gameObject.SetActive(false);
+            }
+            else if (gameObject.tag == "NeedHint")
+            {
+                curInteractable.OnInteract();
+                curInteractGameObject = null;
+                curInteractable = null;
+                hintText.gameObject.SetActive(false);
+            }
         }
     }
 }
