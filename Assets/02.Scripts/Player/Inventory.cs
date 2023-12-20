@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            if (controller.deathWindow.activeInHierarchy == false)
+            if (controller.deathWindow.activeInHierarchy == false && controller.pauseWindow.activeInHierarchy == false)
             {
                 Toggle();
             }
