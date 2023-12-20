@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float jumpForce;
+    private Animator _moveAnimator;
     public LayerMask grounLayerMask;
 
     public Vector2 _curMovementInput;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         saveData = GetComponent<SaveData>();
+        _moveAnimator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -163,10 +165,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            _moveAnimator.SetBool("IsWalk", true);
             _curMovementInput = context.ReadValue<Vector2>();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
+            _moveAnimator.SetBool("IsWalk", false);
             _curMovementInput = Vector2.zero;
         }
 
