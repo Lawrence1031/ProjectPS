@@ -236,10 +236,29 @@ public class SaveData : MonoBehaviour
             controller.transform.position = new Vector3(positionData.x, positionData.y, positionData.z);
 
             Debug.Log("불러온 위치" + controller.transform.position);
+    
         }
         else
         {
-            Debug.Log("저장 된 거 없음");
+            SetPosition();
+            LoadPlayerPosition();
         }
+    }
+
+    public void SetPosition()
+    {
+        Vector3 playerPosition = new Vector3(150f, 0.75f, 0f);
+
+        PlayerPositionData positionData = new PlayerPositionData
+        {
+            x = playerPosition.x,
+            y = playerPosition.y,
+            z = playerPosition.z
+        };
+
+        string json = JsonUtility.ToJson(positionData);
+        File.WriteAllText(savePath, json);
+
+        Debug.Log("저장위치" + playerPosition);
     }
 }

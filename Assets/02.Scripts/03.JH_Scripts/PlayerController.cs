@@ -32,31 +32,36 @@ public class PlayerController : MonoBehaviour
     private float _camCurXRot;
     private Vector2 mouseDelta;
 
-    public GameObject inventoryWindow;
-    public GameObject pauseWindow;
+    public GameObject inventoryWindow;  // 인벤토리 창
+    public GameObject pauseWindow;      // 일시정지 창
 
     [HideInInspector]
     public bool canLook = true;
     public bool canMove = true;
     public bool isJump = false;
 
-    private Rigidbody _rigidbody;
+    private Rigidbody _rigidbody;// 플레이어 본체 확인 용
 
     public Camera _camera;
     //public CinemachineVirtualCamera startCamera;
     //public CinemachineVirtualCamera playerCamera;
 
-    private PlayerConditions condition;
 
-    public Button continueButton;
-    public Button quitButton;
+    private PlayerConditions condition; //컨디션 받아오기
 
-    private SaveData saveData;
+    public Button continueButton;// 계속하기 버튼
+    public Button quitButton; //종료버튼
+    public Button respownButton; //리스폰 버튼
+
+    public GameObject deathWindow; //사망 화면
+
+    public SaveData saveData;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         saveData = GetComponent<SaveData>();
         _moveAnimator = GetComponentInChildren<Animator>();
+        condition = GetComponent<PlayerConditions>();
     }
 
     private void Start()
@@ -89,11 +94,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape) && inventoryWindow.activeInHierarchy == false)
+        if (Input.GetKey(KeyCode.Escape) && inventoryWindow.activeInHierarchy == false && deathWindow.activeInHierarchy == false)
         {
-            ToggleCursor(true);
-            Time.timeScale = 0.0f;
-            pauseWindow.SetActive(true);
+            Pause();
         }
         Button btn = continueButton.GetComponent<Button>();
         btn.onClick.AddListener(Continue);
@@ -114,6 +117,13 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = dir;
     }
 
+    public void Pause()
+    {
+        ToggleCursor(true);
+        Time.timeScale = 0.0f;
+        pauseWindow.SetActive(true);
+    }
+
     private void Continue()
     {
         Time.timeScale = 1.0f;
@@ -125,6 +135,24 @@ public class PlayerController : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("게임이 종료가 된거임!!! 유니티 에디터에선 안꺼지는 거임!!!");
+    }
+
+
+    public void DeathScene()
+    {
+        deathWindow.SetActive(true);
+        Time.timeScale = 0.0f;
+        ToggleCursor(true);
+    }
+    public void Respown()
+    {
+        condition.isDead = false;
+        condition.health.curValue = condition.health.maxValue;
+        condition.UpdateHealthUI();
+        saveData.LoadPlayerPosition();
+        deathWindow.SetActive(false);
+        Time.timeScale = 1.0f;
+        ToggleCursor(false);
     }
 
     /// <summary>
