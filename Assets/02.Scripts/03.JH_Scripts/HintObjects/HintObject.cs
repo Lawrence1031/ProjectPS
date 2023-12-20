@@ -46,9 +46,10 @@ public class HintObject : MonoBehaviour, IInteraction
     public void NonInteract()
     {
 
+        Debug.Log("????????" + playerViCamera.Name);
+        Debug.Log("!!!!!!!" + hintObjViCamera.Name);
         CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, hintObjViCamera.Name, true);
 
-        //Debug.Log("????????");
 
 
         //hintObjViCamera.Priority = 10;

@@ -13449,6 +13449,7 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+  isDead: 0
   fallDamage: 100
 --- !u!114 &1712186753
 MonoBehaviour:
@@ -13534,7 +13535,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  hintObject: {fileID: 576673236}
   promptText: {fileID: 27339698}
 --- !u!114 &1712186757
 MonoBehaviour:
@@ -13566,6 +13566,9 @@ MonoBehaviour:
   _camera: {fileID: 0}
   continueButton: {fileID: 1218613397}
   quitButton: {fileID: 2142356422}
+  respownButton: {fileID: 0}
+  deathWindow: {fileID: 0}
+  saveData: {fileID: 0}
 --- !u!114 &1712186758
 MonoBehaviour:
   m_ObjectHideFlags: 0

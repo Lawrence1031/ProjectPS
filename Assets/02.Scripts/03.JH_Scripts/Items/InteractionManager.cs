@@ -109,6 +109,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
+            Debug.Log("??!?!?!" + hintObject);
             hintObject.NonInteract();
             curInteractGameObject = null;
             curInteraction = null;
