@@ -36,14 +36,16 @@ public class DeskInteraction : MonoBehaviour, IInteraction
     {
         if (Inventory.instance.HasItems(ClueKeyObj) == true)
         {
+            SoundManager.instance.PlayInteractionEffect();
             playerHasClueKey = true;
         }
 
-        Debug.Log("deskHasKey : " + deskHasKey);
-        Debug.Log("playerHasClueKey : " + playerHasClueKey);
+        //Debug.Log("deskHasKey : " + deskHasKey);
+        //Debug.Log("playerHasClueKey : " + playerHasClueKey);
 
         if (deskHasKey && playerHasClueKey)
         {
+            SoundManager.instance.PlayInteractionEffect();
             Inventory.instance.RemoveItem(ClueKeyObj);
             Inventory.instance.AddItem(KeyObj);
             deskHasKey = false;

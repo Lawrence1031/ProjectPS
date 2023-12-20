@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7053e1ab0a1a31b4f832e3075b702f08, type: 3}
-  m_Name: Cluekey_item
+  m_Name: FirstRoomKey_item
   m_EditorClassIdentifier: 
-  displayName: "\uC11C\uB78D \uC5F4\uC1E0"
-  description: "\uC5B4\uB5A4 \uC11C\uB78D\uC744 \uC5EC\uB294 \uC5F4\uC1E0\uC774\uB2E4."
-  type: 1
-  icon: {fileID: 0}
+  displayName: "\uAD50\uC2E4 \uC5F4\uC1E0"
+  description: "\uAD50\uC2E4\uBB38\uC744 \uC5F4 \uC218 \uC788\uB294 \uC5F4\uC1E0\uC774\uB2E4."
+  type: 0
+  icon: {fileID: 21300000, guid: 4990451492a5dd540ba53c4fbc680b31, type: 3}
   dropPrefab: {fileID: 0}
+  IsRoomOpen: 1
+  canStack: 0
+  maxStackAmount: 0

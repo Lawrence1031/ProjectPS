@@ -38,12 +38,22 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// <returns></returns>
     public string GetInteractPrompt()
     {
-        return string.Format("{0}", doorData.displayName);
+        if (doorData.displayName != null)
+        {
+            return string.Format("{0}", doorData.displayName);
+        }
+
+        return " ";
     }
 
     public string GetInteratHint()
     {
-        return string.Format("{0}", doorData.needKeyName);
+        if (doorData.needKeyName != null)
+        {
+            return string.Format("{0}", doorData.needKeyName);
+        }
+
+        return " ";
     }
 
     /// <summary>
@@ -54,7 +64,6 @@ public class DoorObejct : MonoBehaviour, IInteraction
 
         if (needKey)
         {
-            Debug.Log(playerHasKey);
             if (isOpen)
             {
                 SoundManager.instance.PlayDoorOpenEffect();
@@ -62,10 +71,12 @@ public class DoorObejct : MonoBehaviour, IInteraction
             }
             else
             {
-                if (playerHasKey)
+                if (PlayerHasKey(KeyObj))
                 {
+                    Inventory.instance.RemoveItem(KeyObj);
                     SoundManager.instance.PlayDoorOpenEffect();
                     ToggleDoor();
+                    needKey = false;
                 }
                 else
                 {
@@ -109,7 +120,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     private void InvokeController()
     {
         CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, aisleViCamera.Name, true);
-        Debug.Log("인보크 작동");
+        //Debug.Log("인보크 작동");
 
         //aisleViCamera.gameObject.SetActive(false);
     }

@@ -41,18 +41,14 @@ public class DoorAction : MonoBehaviour, IInteraction
     }
     public void OnInteract()
     {
-        Debug.Log("상호작용 중");
         if (needKey)
         {
-            Debug.Log("열쇠가 필요합니다");
             if (isOpen)
             {
-                Debug.Log("문이 열려있습니다");
                 ToggleDoor();
             }
             else
             {
-                Debug.Log("문이 닫혀있습니다");
                 if (Inventory.instance.HasItems(KeyObj) == true)
                 {
                     OpenDoor();
@@ -61,7 +57,6 @@ public class DoorAction : MonoBehaviour, IInteraction
         }
         else
         {
-            Debug.Log("열쇠가 필요하지 않습니다");
             ToggleDoor();
         }
     }
@@ -78,7 +73,7 @@ public class DoorAction : MonoBehaviour, IInteraction
                 }
                 else
                 {
-                    Debug.Log("문이 닫혀있습니다");
+
                 }
             }
             else

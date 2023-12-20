@@ -34,7 +34,7 @@ public class HintObject : MonoBehaviour, IInteraction
     /// </summary>
     public void OnInteract()
     {
-        Debug.Log(hintObjViCamera.Name);
+        //Debug.Log(hintObjViCamera.Name);
         CinemachineController.Instance.OnChangedCineMachinePriority(hintObjViCamera.Name, playerViCamera.Name, false);
 
         //hintObjViCamera.MoveToTopOfPrioritySubqueue();
@@ -53,8 +53,8 @@ public class HintObject : MonoBehaviour, IInteraction
     public void NonInteract()
     {
 
-        Debug.Log("????????" + playerViCamera.Name);
-        Debug.Log("!!!!!!!" + hintObjViCamera.Name);
+        //Debug.Log("????????" + playerViCamera.Name);
+        //Debug.Log("!!!!!!!" + hintObjViCamera.Name);
         CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, hintObjViCamera.Name, true);
 
 

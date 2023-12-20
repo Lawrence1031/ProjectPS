@@ -218,6 +218,9 @@ public class Inventory : MonoBehaviour
                 slots[i].item = null;
             }
         }
+
+        ClearSeletecItemWindow();
+        UpdateUI();
     }
 
     public bool HasItems(ItemData item)

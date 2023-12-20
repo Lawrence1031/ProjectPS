@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9874f393f9f44b42a1269764e6d615b, type: 3}
-  m_Name: ScienceRoom_door
+  m_Name: ScienceRoom_Wall
   m_EditorClassIdentifier: 
-  displayName: "\uACFC\uD559\uC2E4 \uBB38"
+  displayName: "\uC774\uC0C1\uD55C \uBCBD"
+  discription: "\uC6C0\uC9C1\uC77C \uAC83 \uAC19\uC740 \uBCBD\uC774\uB2E4."
+  needKeyName: "\uC5B4\uB518\uAC00\uC758 \uBC84\uD2BC\uC744 \uB204\uB974\uBA74 \uC5F4\uB9B4\uC9C0\uB3C4?"
   needKey: 0
-  needKeyName: 

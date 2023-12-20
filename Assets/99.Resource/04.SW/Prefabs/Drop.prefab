@@ -53,7 +53,7 @@ MonoBehaviour:
   isTrap: 0
   boardDamageAmount: 50
   isDropTrap: 1
-  dropDamageAmount: 100
+  dropDamageAmount: 500
 --- !u!33 &4539563232580462533
 MeshFilter:
   m_ObjectHideFlags: 0

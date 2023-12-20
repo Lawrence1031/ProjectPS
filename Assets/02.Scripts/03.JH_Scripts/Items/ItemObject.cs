@@ -14,6 +14,7 @@ public class ItemObject : MonoBehaviour, IInteraction
 
     public void OnInteract()
     {
+        SoundManager.instance.PlayInteractionEffect();
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
     }
