@@ -69,7 +69,10 @@ public class Inventory : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            Toggle();
+            if (controller.deathWindow.activeInHierarchy == false)
+            {
+                Toggle();
+            }
         }
     }
 
@@ -80,14 +83,12 @@ public class Inventory : MonoBehaviour
             inventoryWindow.SetActive(false);
             onCloseInventory?.Invoke();
             controller.ToggleCursor(false);
-            
         }
         else
         {
             inventoryWindow.SetActive(true);
             onOpenInventory?.Invoke();
             controller.ToggleCursor(true);
-            
         }
     }
 
