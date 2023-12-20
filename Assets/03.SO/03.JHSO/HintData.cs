@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum HintType
 {
-    Paper
+    Paper,
+    Cube
 }
 
 [CreateAssetMenu(fileName = "_hint", menuName = "SO Menu/HintObj ", order = 1)]
