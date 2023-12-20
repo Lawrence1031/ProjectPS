@@ -3175,8 +3175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintData: {fileID: 11400000, guid: a365dc4dcad328946a8fd9a9e2a99148, type: 2}
-  _changeCamera: {fileID: 2050012542}
-  _playerCamera: {fileID: 738148341}
   hintObjViCamera: {fileID: 1722079781}
   playerViCamera: {fileID: 1706224474}
 --- !u!64 &576673237
@@ -6476,8 +6474,10 @@ MonoBehaviour:
   playerViCamera: {fileID: 1706224474}
   aisleViCamera: {fileID: 99479706}
   DoorData: {fileID: 11400000, guid: caecb2338b9facf4aa72f030f25b371d, type: 2}
+  Door: {fileID: 0}
   KeyObj: {fileID: 0}
-  doorAction: {fileID: 0}
+  needKey: 0
+  isOpen: 0
 --- !u!64 &1340932614
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8198,6 +8198,7 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+  isDead: 0
   fallDamage: 100
 --- !u!114 &1712186753
 MonoBehaviour:
@@ -8313,6 +8314,9 @@ MonoBehaviour:
   _camera: {fileID: 0}
   continueButton: {fileID: 0}
   quitButton: {fileID: 0}
+  respownButton: {fileID: 0}
+  deathWindow: {fileID: 0}
+  saveData: {fileID: 0}
 --- !u!114 &1712186758
 MonoBehaviour:
   m_ObjectHideFlags: 0
