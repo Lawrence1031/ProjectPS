@@ -8,6 +8,7 @@ using UnityEngine;
 public enum EnemyType
 {
     Zombie,
+    SKELETONE
 }
 
 public enum Target

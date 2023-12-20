@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
         _camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
-        saveData.LoadPlayerPosition();
+        //saveData.LoadPlayerPosition();
     }
 
     private void FixedUpdate()
@@ -195,18 +195,20 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (Vector3.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (Vector3.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (Vector3.up * 0.01f), Vector3.down),
-            new Ray(transform.position +(-transform.right * 0.2f) +(Vector3.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (Vector3.up * -0.7f), Vector3.down),
+            new Ray(transform.position +(-transform.right * 0.2f) +(Vector3.up * -0.7f), Vector3.down),
         };
 
         // 4중 하나라도 ground와 맞닿았다면
         for (int i = 0; i < rays.Length; i++)
         {
+            //Debug.Log($"{i}" + rays[i]);
+
             if (Physics.Raycast(rays[i], 0.1f, grounLayerMask))
             {
-                Debug.Log("ray?");
+                //Debug.Log("ray?");
                 isJump = true;
                 return true;
             }
@@ -223,10 +225,10 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (-transform.right * 0.2f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.right * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.right * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
     }
 
     public void ToggleCursor(bool toggle)

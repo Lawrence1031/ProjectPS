@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ac65089b52d974a83484b4fef75b17, type: 3}
+  m_Name: Skeleton_enemy
+  m_EditorClassIdentifier: 
+  enemyName: "\uBE68\uAC04 \uB208 \uD574\uACE8"
+  enemyDesciption: "\uACFC\uD559\uC2E4\uC758 \uADC0\uC5EC\uC6B4 \uD574\uACE8"
+  enemyType: 1
+  target: 0
+  damage: 3
+  walkSpeed: 3
+  runSpeed: 5
