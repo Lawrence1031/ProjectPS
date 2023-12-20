@@ -77,7 +77,7 @@ public class DoorAction : MonoBehaviour, IInteraction
         }
     }
 
-public bool PlayerHasKey(ItemData item)
+    public bool PlayerHasKey(ItemData item)
     {
         if (Inventory.instance.HasItems(item) == true)
         {
