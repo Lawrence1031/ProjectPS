@@ -280,5 +280,4 @@ public class PlayerController : MonoBehaviour
     {
         canMove = move;
     }
-
 }

@@ -2326,6 +2326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerViCamera: {fileID: 0}
   aisleViCamera: {fileID: 0}
+  playerController: {fileID: 953610801}
   DoorData: {fileID: 11400000, guid: e0d01742c94187842ba7e5930410c547, type: 2}
   Door: {fileID: 219674625}
   KeyObj: {fileID: 0}
@@ -6131,10 +6132,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerViCamera: {fileID: 0}
   aisleViCamera: {fileID: 0}
-  DoorData: {fileID: 11400000, guid: da4a5ae0ee49689429ec2a80b7e640a0, type: 2}
+  playerController: {fileID: 953610801}
+  DoorData: {fileID: 11400000, guid: 268e6808d7cede34a9c78026fa476236, type: 2}
   Door: {fileID: 614504497}
   KeyObj: {fileID: 0}
-  needKey: 0
+  needKey: 1
   isOpen: 0
 --- !u!65 &614504503
 BoxCollider:
@@ -9137,6 +9139,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6055799729365552334, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6681457000215774849, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -9181,7 +9187,8 @@ PrefabInstance:
     - {fileID: 1717113409070396254, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
     - {fileID: 6524378657373927049, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
     - {fileID: 8445112786399279047, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3612061834875510687, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5903297864969995812, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       insertIndex: -1
@@ -9217,9 +9224,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 953610797}
-    - targetCorrespondingSourceObject: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 953610806}
     - targetCorrespondingSourceObject: {fileID: 3403024553794750845, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 588279318}
@@ -9346,6 +9350,7 @@ MonoBehaviour:
     m_Bits: 256
   hintObject: {fileID: 1926680080}
   promptText: {fileID: 27339698}
+  hintText: {fileID: 1452644274}
 --- !u!114 &953610801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9568,25 +9573,6 @@ MonoBehaviour:
   thisButton: {fileID: 0}
   nextButton: {fileID: 0}
   controller: {fileID: 953610801}
---- !u!114 &953610806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953610794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5052454e8c1248d45bfbdfcfb47cc5e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkRate: 0.05
-  maxCheckDistance: 3
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  hintObject: {fileID: 0}
-  hintText: {fileID: 1452644274}
 --- !u!1 &956977576
 GameObject:
   m_ObjectHideFlags: 0
@@ -9728,7 +9714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
       propertyPath: m_TagString
-      value: Door
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 1685574833684801072, guid: c28dbf95c840bb5499069bc7091ae018, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9988,6 +9974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerViCamera: {fileID: 0}
   aisleViCamera: {fileID: 0}
+  playerController: {fileID: 953610801}
   DoorData: {fileID: 11400000, guid: 23f28af5f6715b74aa46ae1dd1551bb0, type: 2}
   Door: {fileID: 543641320}
   KeyObj: {fileID: 0}
@@ -11973,6 +11960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerViCamera: {fileID: 0}
   aisleViCamera: {fileID: 0}
+  playerController: {fileID: 953610801}
   DoorData: {fileID: 11400000, guid: 75d9bdaebc1d7384f96a159cf93bc852, type: 2}
   Door: {fileID: 1282197190}
   KeyObj: {fileID: 0}
@@ -12210,6 +12198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerViCamera: {fileID: 0}
   aisleViCamera: {fileID: 0}
+  playerController: {fileID: 953610801}
   DoorData: {fileID: 11400000, guid: 09e2dd29f768f024899fd082bfb34260, type: 2}
   Door: {fileID: 1037457211}
   KeyObj: {fileID: 0}
@@ -13218,6 +13207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerViCamera: {fileID: 0}
   aisleViCamera: {fileID: 0}
+  playerController: {fileID: 953610801}
   DoorData: {fileID: 11400000, guid: 41652633344c39f48b2547baa86995aa, type: 2}
   Door: {fileID: 1394009064}
   KeyObj: {fileID: 0}

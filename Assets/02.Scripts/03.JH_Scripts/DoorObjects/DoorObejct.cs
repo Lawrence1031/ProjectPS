@@ -11,6 +11,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     public CinemachineVirtualCamera playerViCamera;
     public CinemachineVirtualCamera aisleViCamera;
 
+    public PlayerController playerController;
     public DoorData DoorData;
     public GameObject Door;
     public ItemData KeyObj;
@@ -30,11 +31,6 @@ public class DoorObejct : MonoBehaviour, IInteraction
         targetRotation = initialRotation * Quaternion.Euler(0, 90, 0);
     }
 
-
-    private void Awake()
-    {
-        instance = this;
-    }
     /// <summary>
     /// Door 이름
     /// </summary>
@@ -49,6 +45,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// </summary>
     public void OnInteract()
     {
+
         if (needKey)
         {
             Debug.Log(playerHasKey);
@@ -66,7 +63,12 @@ public class DoorObejct : MonoBehaviour, IInteraction
                 }
                 else
                 {
-                    SoundManager.instance.PlayDoorLockEffect();
+                    SoundManager.instance.PlayDoorLockEffect(); 
+
+                    if (playerController != null)
+                    {
+                        playerController.SetCanMove(false);
+                    }
                 }
             }
         }
@@ -173,5 +175,4 @@ public class DoorObejct : MonoBehaviour, IInteraction
         transform.rotation = targetRotation;
         SoundManager.instance.PlayDoorOpenEffect();
     }
-
 }

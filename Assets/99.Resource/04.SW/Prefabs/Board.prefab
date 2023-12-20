@@ -50,8 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerSecond: 50
   isTrap: 0
-  damageAmount: 100
-  damageDelay: 1
+  boardDamageAmount: 50
   isDropTrap: 0
   dropDamageAmount: 100
 --- !u!33 &2710970260238771862
@@ -82,7 +81,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14c5131fda61e7c42ba2d02513d139b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

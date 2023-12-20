@@ -17,15 +17,25 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private HintObject hintObject;
 
     public TextMeshProUGUI promptText;
+    public TextMeshProUGUI hintText;
 
     private Camera _camera;
 
     private PlayerController _playerController;
 
+    public static InteractionManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
+        hintText.gameObject.SetActive(false);
         _camera = Camera.main;
         _playerController = GetComponent<PlayerController>();
+
     }
 
     /// <summary>
@@ -43,20 +53,19 @@ public class InteractionManager : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-
-                    if (_camera.gameObject.activeSelf == false)
-                    {
-                        UnSetPromptText();
-                        curInteractGameObject = hit.collider.gameObject;
-                        curInteraction = hit.collider.GetComponent<IInteraction>();
-                    }
-                    else if (hit.collider.gameObject != curInteractGameObject)
-                    {
-                        curInteractGameObject = hit.collider.gameObject;
-                        curInteraction = hit.collider.GetComponent<IInteraction>();
-                        SetPromptText();
-                        /// 여기까지가 레이를 쏘고 바라본 정도까지임 아래는 오브젝트들 마다 interaction이 달라야함
-                    }              
+                if (_camera.gameObject.activeSelf == false)
+                {
+                    UnSetPromptText();
+                    curInteractGameObject = hit.collider.gameObject;
+                    curInteraction = hit.collider.GetComponent<IInteraction>();
+                }
+                else if (hit.collider.gameObject != curInteractGameObject)
+                {
+                    curInteractGameObject = hit.collider.gameObject;
+                    curInteraction = hit.collider.GetComponent<IInteraction>();
+                    SetPromptText();
+                    /// 여기까지가 레이를 쏘고 바라본 정도까지임 아래는 오브젝트들 마다 interaction이 달라야함
+                }            
             }
             else
             {
@@ -86,6 +95,18 @@ public class InteractionManager : MonoBehaviour
     {
         promptText.gameObject.SetActive(false);
         promptText.text = string.Empty;
+    }
+
+    public void SetHintPromptText()
+    {
+        hintText.gameObject.SetActive(true);
+        hintText.text = string.Format("{3}", curInteraction.GetInteractPrompt());
+    }
+
+    public void UnSetHintPromptText()
+    {
+        hintText.text = string.Empty;
+        hintText.gameObject.SetActive(false);
     }
 
     /// <summary>
