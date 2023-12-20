@@ -36,9 +36,11 @@ public class PlayerConditions : MonoBehaviour, IDamagable
         public float GetPercentage() => curValue / maxValue;
     }
 
+
+
     public Condition health; // 플레이어의 체력 상태
     public UnityEvent onTakeDamage; // 피해를 받았을 때 발생하는 이벤트
-    private bool isDead = false; // 플레이어의 사망 상태를 추적하는 플래그
+    public bool isDead = false; // 플레이어의 사망 상태를 추적하는 플래그
 
     private float lastGroundedTime; // 마지막으로 바닥에 닿은 시간
     private float timeSinceLastGrounded; // 마지막으로 바닥에 닿은 이후의 시간
@@ -81,6 +83,11 @@ public class PlayerConditions : MonoBehaviour, IDamagable
             TakePhysicalDamage(fallDamage);
             timeSinceLastGrounded = 0; // 피해를 입힌 후 경과 시간을 초기화
         }
+
+        if (health.curValue <= 0.0f && !isDead)
+        {
+            Die();
+        }
     }
 
     // 피해를 받는 인터페이스 메소드 구현
@@ -95,14 +102,11 @@ public class PlayerConditions : MonoBehaviour, IDamagable
         onTakeDamage?.Invoke();
 
         // 체력이 0 이하로 떨어지면 사망 처리
-        if (health.curValue <= 0.0f && !isDead)
-        {
-            Die();
-        }
+        
     }
 
     // 체력 UI를 업데이트하는 메소드
-    private void UpdateHealthUI()
+    public void UpdateHealthUI()
     {
         if (health.uiBar != null)
         {
@@ -117,9 +121,10 @@ public class PlayerConditions : MonoBehaviour, IDamagable
         {
             Debug.Log("플레이어가 죽었다.");
             isDead = true;
+            playerController.DeathScene();
 
             // 임시로 현재 씬을 다시 로드하여 게임을 재시작
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
