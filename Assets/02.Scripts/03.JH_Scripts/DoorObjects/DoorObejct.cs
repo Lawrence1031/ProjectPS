@@ -38,12 +38,22 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// <returns></returns>
     public string GetInteractPrompt()
     {
-        return string.Format("{0}", doorData.displayName);
+        if (doorData.displayName != null)
+        {
+            return string.Format("{0}", doorData.displayName);
+        }
+
+        return " ";
     }
 
     public string GetInteratHint()
     {
-        return string.Format("{0}", doorData.needKeyName);
+        if (doorData.needKeyName != null)
+        {
+            return string.Format("{0}", doorData.needKeyName);
+        }
+
+        return " ";
     }
 
     /// <summary>
