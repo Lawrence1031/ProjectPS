@@ -195,10 +195,10 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (Vector3.up * -0.7f), Vector3.down),
-            new Ray(transform.position +(-transform.right * 0.2f) +(Vector3.up * -0.7f), Vector3.down),
+            new Ray(transform.position + (transform.forward * 0.3f) + (Vector3.up * -0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.3f) + (Vector3.up * -0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.3f) + (Vector3.up * -0.1f), Vector3.down),
+            new Ray(transform.position +(-transform.right * 0.3f) +(Vector3.up * -0.1f), Vector3.down),
         };
 
         // 4중 하나라도 ground와 맞닿았다면
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(rays[i], 0.1f, grounLayerMask))
             {
-                //Debug.Log("ray?");
+                Debug.Log("ray?");
                 isJump = true;
                 return true;
             }
