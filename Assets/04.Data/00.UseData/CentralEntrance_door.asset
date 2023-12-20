@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CentralEntrance_door
   m_EditorClassIdentifier: 
   displayName: "\uC911\uC559\uD604\uAD00 \uBB38"
-  needKey: 0
-  needKeyName: 
+  needKeyName: "\uD559\uAD50\uB97C \uB458\uB7EC\uBCF4\uBA74 \uC5F4\uC1E0\uB97C \uCC3E\uC744
+    \uC218 \uC788\uC744\uC9C0\uB3C4?"
+  discription: CERoomKey
+  needKey: 1

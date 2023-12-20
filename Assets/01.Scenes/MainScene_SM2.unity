@@ -12773,9 +12773,9 @@ MonoBehaviour:
   playerController: {fileID: 953610801}
   doorData: {fileID: 11400000, guid: 23f28af5f6715b74aa46ae1dd1551bb0, type: 2}
   Door: {fileID: 543641320}
-  KeyObj: {fileID: 0}
-  needKey: 0
-  isOpen: 1
+  KeyObj: {fileID: 11400000, guid: 833910615f95e0c419c5fcaccb7e521e, type: 2}
+  needKey: 1
+  isOpen: 0
 --- !u!1001 &990215774
 PrefabInstance:
   m_ObjectHideFlags: 0
