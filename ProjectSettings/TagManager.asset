@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - SavePoint
+  - Cube
   layers:
   - Default
   - TransparentFX
