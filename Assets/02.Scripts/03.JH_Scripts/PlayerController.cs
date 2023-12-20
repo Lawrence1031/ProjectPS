@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     public Camera _camera;
+    //public CinemachineVirtualCamera startCamera;
+    //public CinemachineVirtualCamera playerCamera;
 
     private PlayerConditions condition;
 
@@ -60,6 +63,9 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         //saveData.LoadPlayerPosition();
+
+        //CinemachineController.Instance.OnChangedCineMachinePriority(playerCamera.name, startCamera.name, true);
+
     }
 
     private void FixedUpdate()
@@ -72,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (canLook)
+        if (canMove)
         {
             CameraLook();
         }
@@ -234,7 +240,7 @@ public class PlayerController : MonoBehaviour
     public void ToggleCursor(bool toggle)
     {
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
-        canLook = !toggle;
+        canMove = !toggle;
     }
 
     public void SetCanMove(bool move)
