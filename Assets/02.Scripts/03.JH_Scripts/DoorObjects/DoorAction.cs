@@ -7,7 +7,7 @@ using static UnityEditor.Progress;
 public class DoorAction : MonoBehaviour, IInteraction
 {
     //Inventory playerInventory = Inventory.Instance;
-    public DoorData DoorData;
+    public DoorData doorData;
     public GameObject Door;
     public ItemData KeyObj;
 
@@ -32,9 +32,13 @@ public class DoorAction : MonoBehaviour, IInteraction
     }
     public string GetInteractPrompt()
     {
-        return string.Format("{0}", DoorData.displayName);
+        return string.Format("{0}", doorData.displayName);
     }
 
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
+    }
     public void OnInteract()
     {
         Debug.Log("상호작용 중");

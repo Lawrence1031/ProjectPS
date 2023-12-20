@@ -9,6 +9,8 @@ using Cinemachine;
 public class HintObject : MonoBehaviour, IInteraction
 {
     public HintData hintData;
+    public DoorData doorData;
+
     public CinemachineVirtualCamera hintObjViCamera;
     public CinemachineVirtualCamera playerViCamera;
 
@@ -20,6 +22,11 @@ public class HintObject : MonoBehaviour, IInteraction
     {
         //Debug.Log(hintData.displayName);
         return string.Format("{0}", hintData.displayName);
+    }
+
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
     }
 
     /// <summary>

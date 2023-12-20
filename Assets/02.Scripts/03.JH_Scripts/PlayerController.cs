@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject inventoryWindow;  // 인벤토리 창
     public GameObject pauseWindow;      // 일시정지 창
+    public GameObject deathWindow;      //사망 화면
 
     [HideInInspector]
     public bool canLook = true;
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     public Button quitButton; //종료버튼
     public Button respownButton; //리스폰 버튼
 
-    public GameObject deathWindow; //사망 화면
+    
 
     public SaveData saveData;
     private void Awake()

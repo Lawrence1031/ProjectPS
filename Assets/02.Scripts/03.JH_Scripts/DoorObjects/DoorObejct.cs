@@ -5,6 +5,7 @@ using Cinemachine;
 using System;
 using Unity.VisualScripting.Antlr3.Runtime;
 using static UnityEditor.Progress;
+using TMPro;
 
 public class DoorObejct : MonoBehaviour, IInteraction
 {
@@ -12,7 +13,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
     public CinemachineVirtualCamera aisleViCamera;
 
     public PlayerController playerController;
-    public DoorData DoorData;
+    public DoorData doorData;
     public GameObject Door;
     public ItemData KeyObj;
 
@@ -37,7 +38,12 @@ public class DoorObejct : MonoBehaviour, IInteraction
     /// <returns></returns>
     public string GetInteractPrompt()
     {
-        return string.Format("{0}", DoorData.displayName);
+        return string.Format("{0}", doorData.displayName);
+    }
+
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
     }
 
     /// <summary>
@@ -69,6 +75,7 @@ public class DoorObejct : MonoBehaviour, IInteraction
                     {
                         playerController.SetCanMove(false);
                     }
+                    InteractionManager.instance.SetHintPromptText();
                 }
             }
         }
@@ -98,7 +105,6 @@ public class DoorObejct : MonoBehaviour, IInteraction
         // StartCoroutine(DealayCoroutineController());
 
     }
-
 
     private void InvokeController()
     {

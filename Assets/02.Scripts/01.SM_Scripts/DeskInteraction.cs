@@ -16,6 +16,8 @@ public class DeskInteraction : MonoBehaviour, IInteraction
     public ItemData ClueKeyObj; // 필요한 키
     public ItemData KeyObj; // 받을 수 있는 키
 
+    public DoorData doorData;
+
     private void Start()
     {
         UIMessage.gameObject.SetActive(false);
@@ -24,6 +26,10 @@ public class DeskInteraction : MonoBehaviour, IInteraction
     public string GetInteractPrompt()
     {
         return string.Format("{0}", itemData.displayName);
+    }
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
     }
 
     public void OnInteract()

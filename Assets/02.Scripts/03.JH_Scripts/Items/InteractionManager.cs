@@ -18,6 +18,7 @@ public class InteractionManager : MonoBehaviour
 
     public TextMeshProUGUI promptText;
     public TextMeshProUGUI hintText;
+    public TextMeshProUGUI exitText;
 
     private Camera _camera;
 
@@ -32,7 +33,7 @@ public class InteractionManager : MonoBehaviour
 
     private void Start()
     {
-        hintText.gameObject.SetActive(false);
+        
         _camera = Camera.main;
         _playerController = GetComponent<PlayerController>();
 
@@ -56,6 +57,7 @@ public class InteractionManager : MonoBehaviour
                 if (_camera.gameObject.activeSelf == false)
                 {
                     UnSetPromptText();
+                    UnSetHintPromptText();
                     curInteractGameObject = hit.collider.gameObject;
                     curInteraction = hit.collider.GetComponent<IInteraction>();
                 }
@@ -74,10 +76,13 @@ public class InteractionManager : MonoBehaviour
                     promptText.gameObject.SetActive(false);
                 }
 
-                ///평시에 null
+                //평시에 null
+                
                 curInteractGameObject = null;
                 curInteraction = null;
                 promptText.gameObject.SetActive(false);
+                UnSetHintPromptText();
+                UnSetExitPromptText();
             }
         }
     }
@@ -91,7 +96,7 @@ public class InteractionManager : MonoBehaviour
         promptText.text = string.Format("<b>[E]</b> {0}", curInteraction.GetInteractPrompt());
     }
 
-    private void UnSetPromptText()
+    public void UnSetPromptText()
     {
         promptText.gameObject.SetActive(false);
         promptText.text = string.Empty;
@@ -100,13 +105,22 @@ public class InteractionManager : MonoBehaviour
     public void SetHintPromptText()
     {
         hintText.gameObject.SetActive(true);
-        hintText.text = string.Format("{3}", curInteraction.GetInteractPrompt());
+        hintText.text = string.Format("{0}", curInteraction.GetInteratHint());
     }
 
     public void UnSetHintPromptText()
     {
         hintText.text = string.Empty;
         hintText.gameObject.SetActive(false);
+    }
+    public void SetExitTextPromptText()
+    {
+        exitText.gameObject.SetActive(true);
+    }
+
+    public void UnSetExitPromptText()
+    {
+        exitText.gameObject.SetActive(false);
     }
 
     /// <summary>

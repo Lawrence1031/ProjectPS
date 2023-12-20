@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemObject : MonoBehaviour, IInteraction
 {
     public ItemData itemData;
+    public DoorData doorData;
 
     public string GetInteractPrompt()
     {
@@ -15,5 +16,10 @@ public class ItemObject : MonoBehaviour, IInteraction
     {
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
+    }
+
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
     }
 }
