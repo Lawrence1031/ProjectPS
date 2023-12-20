@@ -225,10 +225,10 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (transform.right * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
-        Gizmos.DrawRay(transform.position + (-transform.right * 0.2f) + (Vector3.up * -0.7f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.forward * 0.2f) + (Vector3.up * -0.01f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f) + (Vector3.up * -0.01f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (transform.right * 0.2f) + (Vector3.up * -0.01f), Vector3.down);
+        Gizmos.DrawRay(transform.position + (-transform.right * 0.2f) + (Vector3.up * -0.01f), Vector3.down);
     }
 
     public void ToggleCursor(bool toggle)
