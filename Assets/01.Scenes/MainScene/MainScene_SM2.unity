@@ -6806,7 +6806,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -12004,7 +12004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903297864969995812, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.14
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5903297864969995812, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12156,8 +12156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health:
     curValue: 0
-    maxValue: 500
-    startValue: 500
+    maxValue: 150
+    startValue: 150
     uiBar: {fileID: 1012451749}
   onTakeDamage:
     m_PersistentCalls:
@@ -12262,7 +12262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb1255c82c4ae54e9e1af87fb38875d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
   jumpForce: 80
   grounLayerMask:
     serializedVersion: 2
@@ -16349,7 +16349,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uB108\uB294 \uC774\uACF3\uC5D0 \uAC16\uD614\uB2E4.\n\uBB38\uC744 \uC5F4\uACE0
-    \uD0C8\uCD9C\uD560 \uC218 \uC788\uC744\uAE4C?\n\uC774 \uC5F4\uC1E0\uAC00 \uB3C4\uC6C0\uC774
+    \uD0C8\uCD9C\uD560 \uC218 \uC788\uC744\uAE4C?\n\n\uC774 \uC5F4\uC1E0\uAC00 \uB3C4\uC6C0\uC774
     \uB418\uBA74 \uC88B\uACA0\uAD70."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04d65f21894253c4aa68c84d5fc6603b, type: 2}
@@ -23333,6 +23333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClearWindow: {fileID: 14744196}
   ClearText: {fileID: 621565555}
+  controller: {fileID: 953610801}
 --- !u!1001 &2075419178
 PrefabInstance:
   m_ObjectHideFlags: 0

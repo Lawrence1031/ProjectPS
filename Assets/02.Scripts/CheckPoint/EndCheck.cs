@@ -7,20 +7,19 @@ public class EndCheck : MonoBehaviour
 {
     public GameObject ClearWindow;
     public TextMeshProUGUI ClearText;
-
+    public PlayerController controller;
     //private void Awake()
     //{
     //    ClearWindow.SetActive(false);
     //}
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            ClearWindow.SetActive(true);
-            Time.timeScale = 0;
-
-            Cursor.lockState = CursorLockMode.Locked;
+            ClearWindow.gameObject.SetActive(true);
+            controller.ToggleCursor(true);
         }
     }
 }

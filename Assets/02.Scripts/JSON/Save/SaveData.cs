@@ -250,9 +250,10 @@ public class SaveData : MonoBehaviour
         }
     }
 
+    [ContextMenu("Set Basic Json Data")]
     public void SetPosition()
     {
-        Vector3 playerPosition = new Vector3(150f, 0.75f, 0f);
+        Vector3 playerPosition = new Vector3(150f, 0.7f, -71f);
 
         PlayerPositionData positionData = new PlayerPositionData
         {
