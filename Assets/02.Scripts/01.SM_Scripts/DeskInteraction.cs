@@ -16,6 +16,8 @@ public class DeskInteraction : MonoBehaviour, IInteraction
     public ItemData ClueKeyObj; // 필요한 키
     public ItemData KeyObj; // 받을 수 있는 키
 
+    public DoorData doorData;
+
     private void Start()
     {
         UIMessage.gameObject.SetActive(false);
@@ -25,19 +27,25 @@ public class DeskInteraction : MonoBehaviour, IInteraction
     {
         return string.Format("{0}", itemData.displayName);
     }
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
+    }
 
     public void OnInteract()
     {
         if (Inventory.instance.HasItems(ClueKeyObj) == true)
         {
+            SoundManager.instance.PlayInteractionEffect();
             playerHasClueKey = true;
         }
 
-        Debug.Log("deskHasKey : " + deskHasKey);
-        Debug.Log("playerHasClueKey : " + playerHasClueKey);
+        //Debug.Log("deskHasKey : " + deskHasKey);
+        //Debug.Log("playerHasClueKey : " + playerHasClueKey);
 
         if (deskHasKey && playerHasClueKey)
         {
+            SoundManager.instance.PlayInteractionEffect();
             Inventory.instance.RemoveItem(ClueKeyObj);
             Inventory.instance.AddItem(KeyObj);
             deskHasKey = false;

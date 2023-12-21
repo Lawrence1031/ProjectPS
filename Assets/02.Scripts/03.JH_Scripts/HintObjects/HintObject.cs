@@ -9,8 +9,8 @@ using Cinemachine;
 public class HintObject : MonoBehaviour, IInteraction
 {
     public HintData hintData;
-    public Camera _changeCamera;
-    public Camera _playerCamera;
+    public DoorData doorData;
+
     public CinemachineVirtualCamera hintObjViCamera;
     public CinemachineVirtualCamera playerViCamera;
 
@@ -20,7 +20,13 @@ public class HintObject : MonoBehaviour, IInteraction
     /// <returns></returns>
     public string GetInteractPrompt()
     {
+        //Debug.Log(hintData.displayName);
         return string.Format("{0}", hintData.displayName);
+    }
+
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
     }
 
     /// <summary>
@@ -28,6 +34,7 @@ public class HintObject : MonoBehaviour, IInteraction
     /// </summary>
     public void OnInteract()
     {
+        //Debug.Log(hintObjViCamera.Name);
         CinemachineController.Instance.OnChangedCineMachinePriority(hintObjViCamera.Name, playerViCamera.Name, false);
 
         //hintObjViCamera.MoveToTopOfPrioritySubqueue();
@@ -46,9 +53,10 @@ public class HintObject : MonoBehaviour, IInteraction
     public void NonInteract()
     {
 
+        //Debug.Log("????????" + playerViCamera.Name);
+        //Debug.Log("!!!!!!!" + hintObjViCamera.Name);
         CinemachineController.Instance.OnChangedCineMachinePriority(playerViCamera.Name, hintObjViCamera.Name, true);
 
-        //Debug.Log("????????");
 
 
         //hintObjViCamera.Priority = 10;

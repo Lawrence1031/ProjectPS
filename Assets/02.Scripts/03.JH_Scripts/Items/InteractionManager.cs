@@ -17,15 +17,26 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private HintObject hintObject;
 
     public TextMeshProUGUI promptText;
+    public TextMeshProUGUI hintText;
+    public TextMeshProUGUI exitText;
 
     private Camera _camera;
 
     private PlayerController _playerController;
 
+    public static InteractionManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
+        
         _camera = Camera.main;
         _playerController = GetComponent<PlayerController>();
+
     }
 
     /// <summary>
@@ -43,10 +54,10 @@ public class InteractionManager : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
-
                 if (_camera.gameObject.activeSelf == false)
                 {
                     UnSetPromptText();
+                    UnSetHintPromptText();
                     curInteractGameObject = hit.collider.gameObject;
                     curInteraction = hit.collider.GetComponent<IInteraction>();
                 }
@@ -56,8 +67,7 @@ public class InteractionManager : MonoBehaviour
                     curInteraction = hit.collider.GetComponent<IInteraction>();
                     SetPromptText();
                     /// 여기까지가 레이를 쏘고 바라본 정도까지임 아래는 오브젝트들 마다 interaction이 달라야함
-                }
-               
+                }            
             }
             else
             {
@@ -66,12 +76,14 @@ public class InteractionManager : MonoBehaviour
                     promptText.gameObject.SetActive(false);
                 }
 
-                ///평시에 null
+                //평시에 null
+                
                 curInteractGameObject = null;
                 curInteraction = null;
                 promptText.gameObject.SetActive(false);
+                UnSetHintPromptText();
+                UnSetExitPromptText();
             }
-
         }
     }
 
@@ -84,10 +96,31 @@ public class InteractionManager : MonoBehaviour
         promptText.text = string.Format("<b>[E]</b> {0}", curInteraction.GetInteractPrompt());
     }
 
-    private void UnSetPromptText()
+    public void UnSetPromptText()
     {
         promptText.gameObject.SetActive(false);
         promptText.text = string.Empty;
+    }
+
+    public void SetHintPromptText()
+    {
+        hintText.gameObject.SetActive(true);
+        hintText.text = string.Format("{0}", curInteraction.GetInteratHint());
+    }
+
+    public void UnSetHintPromptText()
+    {
+        hintText.text = string.Empty;
+        hintText.gameObject.SetActive(false);
+    }
+    public void SetExitTextPromptText()
+    {
+        exitText.gameObject.SetActive(true);
+    }
+
+    public void UnSetExitPromptText()
+    {
+        exitText.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -109,6 +142,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
+            //Debug.Log("??!?!?!" + hintObject);
             hintObject.NonInteract();
             curInteractGameObject = null;
             curInteraction = null;

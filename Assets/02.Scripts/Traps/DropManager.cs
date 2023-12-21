@@ -12,6 +12,7 @@ public class DropManager : MonoBehaviour
         // 'Player' 태그를 가진 오브젝트가 트리거에 닿았는지 확인.
         if (other.CompareTag("Player"))
         {
+            SoundManager.instance.PlaytrapEffect();
             // 플레이어가 함정에 닿으면 콘솔에 메시지 출력
             Debug.Log("함정 발동");
 
@@ -21,6 +22,13 @@ public class DropManager : MonoBehaviour
             // Quaternion.identity는 회전을 적용하지 않음을 나타냄.
             Instantiate(dropPrefab, dropPrefab.transform.position, Quaternion.identity);
         }
+        else if(other.CompareTag("Cube"))
+        {
+            Debug.Log("함정 발동");
+            Instantiate(dropPrefab, dropPrefab.transform.position, Quaternion.identity);
+        }
+
+
     }
 }
 

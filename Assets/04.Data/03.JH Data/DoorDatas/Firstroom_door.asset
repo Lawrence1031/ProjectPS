@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Firstroom_door
   m_EditorClassIdentifier: 
   displayName: "\uCCAB\uBC88\uC9F8 \uBB38"
+  needKey: 0
+  needKeyName: "\uC7A0\uACA8\uC788\uB2E4"

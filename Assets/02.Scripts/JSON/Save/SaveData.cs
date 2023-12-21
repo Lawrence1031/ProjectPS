@@ -180,25 +180,30 @@ public class SaveData : MonoBehaviour
     //    }
     //}
 
-    public GameObject thisButton;
-    public GameObject nextButton;
+    public GameObject thisButton; //이번 체크포인트
+    public GameObject nextButton; //다음 체크 포인트
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player") //플레이어랑 붙딛히면 
         {
-            thisButton.SetActive(false);
-            nextButton.SetActive(true);
-            SavePlayerPosition();
+            SoundManager.instance.PlayInteractionEffect();
+            thisButton.SetActive(false); //이번 체크포인트 끄고
+            SavePlayerPosition();        //플레이어 위치 저장
+
+            if (nextButton != null)
+            {
+                nextButton.SetActive(true);  //다음 체크포인트 키기
+            }
         }
     }
 
-    private string savePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerData.json";
+    private string savePath = "Assets/02.Scripts/JSON/PlayerSaveData/playerData.json";//저장경로
 
     public PlayerController controller;
 
     [System.Serializable]
-    private class PlayerPositionData
+    private class PlayerPositionData //플레이어 좌표값
     {
         public float x;
         public float y;
@@ -208,7 +213,7 @@ public class SaveData : MonoBehaviour
     [ContextMenu("To Json Data")]
     private void SavePlayerPosition()
     {
-        Vector3 playerPosition = controller.transform.position;
+        Vector3 playerPosition = controller.transform.position; //좌표값 받아오기
 
         PlayerPositionData positionData = new PlayerPositionData
         {
@@ -225,7 +230,7 @@ public class SaveData : MonoBehaviour
 
     [ContextMenu("From Json Data")]
     // 추가로 로드할 때 사용할 메서드
-    public void LoadPlayerPosition()
+    public void LoadPlayerPosition()//저장된 세이브 불러오기
     {
         if (File.Exists(savePath))
         {
@@ -236,10 +241,29 @@ public class SaveData : MonoBehaviour
             controller.transform.position = new Vector3(positionData.x, positionData.y, positionData.z);
 
             Debug.Log("불러온 위치" + controller.transform.position);
+    
         }
         else
         {
-            Debug.Log("저장 된 거 없음");
+            SetPosition();
+            LoadPlayerPosition();
         }
+    }
+
+    public void SetPosition()
+    {
+        Vector3 playerPosition = new Vector3(150f, 0.75f, 0f);
+
+        PlayerPositionData positionData = new PlayerPositionData
+        {
+            x = playerPosition.x,
+            y = playerPosition.y,
+            z = playerPosition.z
+        };
+
+        string json = JsonUtility.ToJson(positionData);
+        File.WriteAllText(savePath, json);
+
+        Debug.Log("저장위치" + playerPosition);
     }
 }

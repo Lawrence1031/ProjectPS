@@ -7,7 +7,7 @@ using static UnityEditor.Progress;
 public class DoorAction : MonoBehaviour, IInteraction
 {
     //Inventory playerInventory = Inventory.Instance;
-    public DoorData DoorData;
+    public DoorData doorData;
     public GameObject Door;
     public ItemData KeyObj;
 
@@ -18,6 +18,13 @@ public class DoorAction : MonoBehaviour, IInteraction
     public Vector3 initialPosition;
     public Vector3 targetPosition;
 
+    public static DoorAction instanse;
+
+    private void Awake()
+    {
+        instanse = this;
+    }
+
     private void Start()
     {
         initialPosition = transform.position;
@@ -25,23 +32,23 @@ public class DoorAction : MonoBehaviour, IInteraction
     }
     public string GetInteractPrompt()
     {
-        return string.Format("{0}", DoorData.displayName);
+        return string.Format("{0}", doorData.displayName);
     }
 
+    public string GetInteratHint()
+    {
+        return string.Format("{0}", doorData.needKeyName);
+    }
     public void OnInteract()
     {
-        Debug.Log("상호작용 중");
         if (needKey)
         {
-            Debug.Log("열쇠가 필요합니다");
             if (isOpen)
             {
-                Debug.Log("문이 열려있습니다");
                 ToggleDoor();
             }
             else
             {
-                Debug.Log("문이 닫혀있습니다");
                 if (Inventory.instance.HasItems(KeyObj) == true)
                 {
                     OpenDoor();
@@ -50,7 +57,6 @@ public class DoorAction : MonoBehaviour, IInteraction
         }
         else
         {
-            Debug.Log("열쇠가 필요하지 않습니다");
             ToggleDoor();
         }
     }
@@ -67,7 +73,7 @@ public class DoorAction : MonoBehaviour, IInteraction
                 }
                 else
                 {
-                    Debug.Log("문이 닫혀있습니다");
+
                 }
             }
             else
@@ -77,7 +83,7 @@ public class DoorAction : MonoBehaviour, IInteraction
         }
     }
 
-public bool PlayerHasKey(ItemData item)
+    public bool PlayerHasKey(ItemData item)
     {
         if (Inventory.instance.HasItems(item) == true)
         {

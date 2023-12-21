@@ -12,7 +12,7 @@ public class CinemachineController : MonoBehaviour
     public PlayerController playerController;
 
     public static CinemachineController Instance; // 싱글톤 인스턴스
-   
+
     private void Awake()
     {
         if (Instance == null)
@@ -35,7 +35,18 @@ public class CinemachineController : MonoBehaviour
         {
             cinViCameraDictionary.Add(virtualCamera.Name, virtualCamera);
         }
+    }
 
+    public void Update()
+    {
+        if (playerController.canMove == false)
+        {
+            InteractionManager.instance.SetExitTextPromptText();
+        }
+        if (playerController.canMove == true || playerController.inventoryWindow.activeInHierarchy || playerController.pauseWindow.activeInHierarchy || playerController.deathWindow.activeInHierarchy)
+        {
+            InteractionManager.instance.UnSetExitPromptText();
+        }
     }
 
     /// <summary>
@@ -52,15 +63,11 @@ public class CinemachineController : MonoBehaviour
             _targetVirtualCamera.Priority = 11;
             _curVirtualCamera.Priority = 10;
 
-
-            if(playerController != null)
+            
+            if (playerController != null)
             {
-                playerController.SetCanMove(isPlayerStopMove);
+                playerController.SetCanMove(isPlayerStopMove);                
             }
-
         }
-
-
     }
-
 }
