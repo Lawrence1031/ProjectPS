@@ -1,6 +1,6 @@
 # Project PS (1점 4조)
 
-![TeamLogo](https://teamsparta.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F83c75a39-3aba-4ba4-a792-7aefe4b07895%2F0ce77e38-824f-44a6-854c-c8c82fdef121%2Fshooter-kneeling-position-vector-28377363.jpg?table=block&id=38c84c4c-a03c-4d8b-8236-f10f7b90ce28&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1470&userId=&cache=v2)
+![TeamLogo](https://cdn-icons-png.flaticon.com/512/7053/7053250.png)
 
 </br>
 
