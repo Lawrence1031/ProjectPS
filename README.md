@@ -71,7 +71,7 @@
 
 ## 시연 영상
 
-[프로젝트 시연영상] https://www.youtube.com/watch?v=OXB477_D4LE
+[프로젝트 시연영상] https://www.youtube.com/watch?v=5-NcDu6zxyI&feature=youtu.be
 
 
 ## 프로젝트 트러블 슈팅(Troubleshooting) 및 소감
